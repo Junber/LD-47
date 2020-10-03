@@ -6,6 +6,10 @@ onready var boostProgressBar = $BoostCooldownProgessBar
 func _ready():
 	pass
 
+func kill():
+	$"../ArenaCamera".make_current()
+	queue_free()
+
 func getDirection():	
 	var x = int(Input.is_action_pressed("move_right")) - int(Input.is_action_pressed("move_left"))
 	var y = int(Input.is_action_pressed("move_down")) - int(Input.is_action_pressed("move_up"))
