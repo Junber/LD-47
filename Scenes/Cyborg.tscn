@@ -37,23 +37,12 @@ color_ramp = SubResource( 4 )
 
 [node name="Cyborg" instance=ExtResource( 1 )]
 
-[node name="CollisionShape2D" parent="." index="0"]
-visible = false
-
 [node name="DeadSprite" parent="." index="1"]
-visible = true
 texture = ExtResource( 3 )
 
 [node name="AliveSprite" parent="." index="2"]
-visible = false
 position = Vector2( -0.353546, 0 )
 texture = ExtResource( 2 )
-
-[node name="HealthBar" parent="." index="3"]
-visible = false
-
-[node name="BloodParticles" parent="." index="4"]
-visible = false
 
 [node name="Laser" type="RayCast2D" parent="." index="5"]
 enabled = true
