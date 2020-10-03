@@ -18,6 +18,9 @@ func _ready():
 func collideWithWall(_collider, collision):
 	velocity = velocity.bounce(collision.normal) / 2
 	rotationSpeed /= 2
+
+func collideWithLaser(damage):
+	takeDamage(damage)
 	
 func collideWithIceScater(_collider):
 	pass
@@ -50,11 +53,6 @@ func takeDamage(amount):
 	healthBar.value -= amount
 	if healthBar.value <= 0:
 		kill()
-		return true
-	return false
-
-func hitIceScater(_collision):
-	pass
 
 func spinUp(delta):
 	rotationSpeed = min(rotationSpeed + 10 * delta, maxRotationSpeed)
