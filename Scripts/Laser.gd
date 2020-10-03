@@ -12,6 +12,10 @@ func collideWithWall(collider, collision):
 func collideWithIceScater(collider):
 	collider.takeDamage(damage)
 
+func _process(delta):
+	if get_parent().dead:
+		queue_free()
+
 func _physics_process(delta):
 	rotation += delta
 	
