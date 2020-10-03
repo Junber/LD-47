@@ -11,6 +11,10 @@ func kill():
 		$"../ArenaCamera".make_current()
 		emit_signal("playerDied")
 
+func collideWithHealingPotion(collider):
+	self.changeHealth(collider.healingAmount)	
+	collider.getUsed()
+
 func getDirection():
 	if dead:
 		return Vector2(0,0)

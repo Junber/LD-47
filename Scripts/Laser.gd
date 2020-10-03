@@ -2,7 +2,7 @@ extends RayCast2D
 
 onready var laserBeam = $LaserBeam
 onready var laserSparks = $Sparks
-export var damage = 800
+export var damage = -800
 
 func _process(_delta):
 	if get_parent().dead:
@@ -15,5 +15,5 @@ func _physics_process(delta):
 		var laserEndPoint = to_local(get_collision_point())
 		laserBeam.points[1] = laserEndPoint
 		laserSparks.position = laserEndPoint
-		get_collider().collideWithLaser(damage * delta)
+	get_collider().collideWithLaser(damage * delta)
 
