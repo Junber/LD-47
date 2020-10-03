@@ -20,7 +20,7 @@ func collideWithWall(_collider, collision):
 	rotationSpeed /= 2
 
 func collideWithLaser(damage):
-	takeDamage(damage)
+	changeHealth(damage)
 	
 func collideWithIceScater(_collider):
 	pass
@@ -40,7 +40,7 @@ func boost():
 	rotationSpeed = min(rotationSpeed + 100, maxRotationSpeed)
 
 func damageDealt():
-	return (rotationSpeed + velocity.length() / 2) * 0.1
+	return -(rotationSpeed + velocity.length() / 2) * 0.1
 
 func kill():
 	if !dead:
@@ -49,8 +49,9 @@ func kill():
 		particleEmitter.emitting = true
 		dead = true
 
-func takeDamage(amount):
-	healthBar.value -= amount
+func changeHealth(amount):
+	healthBar.value += amount
+	healthBar.value = clamp(healthBar.value, 0, healthBar.max_value)
 	if healthBar.value <= 0:
 		kill()
 

@@ -15,7 +15,7 @@ func collideWithIceScater(collider):
 	var damageToOther = damageDealt()
 	if !protected(collider):
 		bounceOffOfIceScater(collider)
-		takeDamage(collider.damageDealt())
+		changeHealth(collider.damageDealt())
 		if dead:
 			damageToOther = 0
 			emit_signal("enemyDied")
@@ -24,12 +24,22 @@ func collideWithIceScater(collider):
 	else:
 		emit_signal("enemyDidNotDie")
 	collider.bounceOffOfIceScater(self)
-	collider.takeDamage(damageToOther)
+	collider.changeHealth(damageToOther)
+
+func checkDrop():
+	if randf()<0.5:
+		var newDrop = load("res://Scenes/HealingPotion.tscn").instance()
+		newDrop.position=self.position
+		var DegreesInRadians = 0.34
+		var newVelocity = (self.velocity * 0.5).rotated(randf()*DegreesInRadians-(DegreesInRadians/2))
+		newDrop.velocity += newVelocity
+		get_parent().call_deferred("add_child",newDrop)
 
 func kill():
 	if !dead:
 		.kill()
-		set_collision_mask_bit(0, false)		
+		checkDrop()
+		set_collision_mask_bit(0, false)
 		get_node("../HUD/ScoreLabel").increaseScore()
 
 func getDirection():
