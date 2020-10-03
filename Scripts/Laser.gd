@@ -12,5 +12,5 @@ func _physics_process(delta):
 	
 	if is_colliding():
 		var point = get_collision_point()
-		laserBeam.points[1]=point
+		laserBeam.points[1]=to_local(point)
 		print(get_collider().name)
