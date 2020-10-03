@@ -5,12 +5,22 @@ onready var player = $"../Player"
 signal enemyDied
 signal enemyDidNotDie
 
+func protected(_collider):
+	return false
+
 func collideWithIceScater(collider):
-	bounceOffOfIceScater(collider)
+	if dead or collider.dead:
+		return
+		
 	var damageToOther = damageDealt()
-	if takeDamage(collider.damageDealt()):
-		damageToOther = 0
-		emit_signal("enemyDied")
+	if !protected(collider):
+		bounceOffOfIceScater(collider)
+		takeDamage(collider.damageDealt())
+		if dead:
+			damageToOther = 0
+			emit_signal("enemyDied")
+		else:
+			emit_signal("enemyDidNotDie")
 	else:
 		emit_signal("enemyDidNotDie")
 	collider.bounceOffOfIceScater(self)

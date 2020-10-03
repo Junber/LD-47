@@ -3,12 +3,14 @@ extends Path2D
 onready var timer = $EnemySpawnTimer
 var enemyScenes = [
 	load("res://Scenes/Enemy.tscn"),
-	load("res://Scenes/Cyborg.tscn")
+	load("res://Scenes/Cyborg.tscn"),
+	load("res://Scenes/Knight.tscn")
 ]
 export var minimumSpawnDistance = 500
 
 
 func _ready():
+	randomize()
 	spawnEnemy()
 
 func getNewSpawnPosition():
