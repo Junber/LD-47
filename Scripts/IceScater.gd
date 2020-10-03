@@ -31,9 +31,14 @@ func getHit(other, damage):
 	healthBar.value -= damage
 	if healthBar.value <= 0:
 		kill()
+		return true
+	return false
 
-func hitWall(normal):
-	velocity = velocity.bounce(normal) / 2
+func hitIceScater(collision):
+	pass
+
+func hitWall(collision):
+	velocity = velocity.bounce(collision.normal) / 2
 	rotationSpeed /= 2
 
 func spinUp(delta):
@@ -47,10 +52,8 @@ func _process(delta):
 	var collision = move_and_collide(velocity * delta)
 	if collision:
 		if collision.collider.has_method("getHit"):
-			var previousDamage = damageDealt()
-			getHit(collision.collider, collision.collider.damageDealt())
-			collision.collider.getHit(self, previousDamage)
+			hitIceScater(collision)
 		else:
-			hitWall(collision.normal)
+			hitWall(collision)
 	
 	sprite.rotate(0.1 * delta * rotationSpeed)

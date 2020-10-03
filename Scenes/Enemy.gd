@@ -6,9 +6,14 @@ onready var player = $"../Player"
 func _ready():
 	pass
 
+func hitIceScater(collision):
+	var damageToOther = damageDealt()
+	if getHit(collision.collider, collision.collider.damageDealt()):
+		damageToOther = 0
+	collision.collider.getHit(self, damageToOther)
+
 func kill():
 	if !is_queued_for_deletion():
-		
 		var corpse = corpseScene.instance()
 		corpse.position = position
 		corpse.rotation = rotation
