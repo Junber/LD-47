@@ -12,7 +12,9 @@ func getDirection():
 	
 	return Vector2(x,y)
 
-func _process(_delta):
+func _process(delta):
+	spinUp(delta)
+	
 	boostProgressBar.value = boostTimer.time_left / boostTimer.wait_time
 	if Input.is_action_just_pressed("boost"):
 		if boostTimer.is_stopped():

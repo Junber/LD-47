@@ -22,23 +22,27 @@ func boost():
 func damageDealt():
 	return (rotationSpeed + velocity.length() / 2) * 0.1
 
+func kill():
+	queue_free()
+
 func getHit(other, damage):
 	velocity = (position - other.position).normalized() * velocity.length() / 2
-	rotationSpeed = 1
+	rotationSpeed /= 2
 	healthBar.value -= damage
 	if healthBar.value <= 0:
-		queue_free()
+		kill()
 
 func hitWall(normal):
 	velocity = velocity.bounce(normal) / 2
-	rotationSpeed = 1
+	rotationSpeed /= 2
+
+func spinUp(delta):
+	rotationSpeed = min(rotationSpeed + 10 * delta, maxRotationSpeed)
 
 func _process(delta):
 	velocity += getDirection() * acceleration * delta
 	velocity *= pow(0.9, delta)
 	velocity -= velocity.normalized() * 100 * delta
-	
-	rotationSpeed = min(rotationSpeed + 10 * delta, maxRotationSpeed)
 	
 	var collision = move_and_collide(velocity * delta)
 	if collision:
@@ -48,6 +52,5 @@ func _process(delta):
 			collision.collider.getHit(self, previousDamage)
 		else:
 			hitWall(collision.normal)
-		
 	
 	sprite.rotate(0.1 * delta * rotationSpeed)

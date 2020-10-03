@@ -20,6 +20,7 @@ _data = {
 
 [node name="Background" type="Sprite" parent="."]
 position = Vector2( 960, 540 )
+z_index = -2
 texture = ExtResource( 3 )
 
 [node name="Player" type="KinematicBody2D" parent="."]
@@ -64,19 +65,21 @@ __meta__ = {
 }
 
 [node name="Enemy" parent="." instance=ExtResource( 5 )]
+position = Vector2( 408.395, 181.377 )
 
 [node name="Border" type="StaticBody2D" parent="."]
-visible = false
 collision_layer = 4
 collision_mask = 0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Border"]
 build_mode = 1
 polygon = PoolVector2Array( 288.705, 105.32, 162.989, 159.198, 57.4774, 257.975, 52.9875, 372.466, 68.702, 547.57, 122.58, 702.47, 142.784, 834.92, 237.071, 906.758, 434.625, 965.126, 587.279, 974.106, 796.057, 987.575, 944.222, 998.8, 1056.47, 992.065, 881.106, 1520.43, 144.884, 1471.35, -118.329, 1111.06, -152.232, 776.267, -220.037, 566.494, -179.778, 104.568, 78.7311, -105.206, 549.133, -225.985, 794.928, -168.774, 1064.03, -175.13, 908.304, 33.4825, 634.423, 49.197, 551.361, 67.1564, 414.42, 103.075 )
+one_way_collision_margin = 10.0
 
 [node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Border"]
 build_mode = 1
 polygon = PoolVector2Array( 902.993, 32.5243, 1006.82, 26.1675, 1121.24, 41, 1383.99, 55.8325, 1572.57, 108.806, 1703.95, 159.66, 1839.56, 299.509, 1915.84, 411.812, 1903.13, 596.159, 1824.73, 803.813, 1687, 903.403, 1436.96, 973.327, 1265.33, 1002.99, 1053.44, 990.279, 907.711, 1369.42, 1390.92, 1505.57, 2069.02, 1289.33, 2442.25, 811.541, 2410.74, 533.811, 2389.9, 158.578, 2102.55, 12.6583, 1873.57, -128.772, 1662.55, -337.55, 1238.26, -402.653, 1011.52, -330.815, 876.825, -245.508 )
+one_way_collision_margin = 10.0
 
 [node name="EnemySpawnPath" type="Path2D" parent="."]
 curve = SubResource( 2 )
