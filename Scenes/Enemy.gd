@@ -1,7 +1,11 @@
 extends "res://Scripts/IceScater.gd"
 
-var corpseScene = load("res://Scenes/Corpse.tscn")
 onready var player = $"../Player"
+onready var deadSprite = $DeadSprite
+onready var aliveSprite = $AliveSprite
+onready var particleEmitter = $BloodParticles
+
+var dead = false
 
 func _ready():
 	pass
@@ -12,23 +16,28 @@ func hitIceScater(collision):
 		damageToOther = 0
 	collision.collider.getHit(self, damageToOther)
 
+func setSpriteRotation(rotation):
+	deadSprite.rotate(rotation)
+	aliveSprite.rotate(rotation)
+
 func kill():
-	if !is_queued_for_deletion():
-		var corpse = corpseScene.instance()
-		corpse.position = position
-		corpse.rotation = rotation
-		corpse.velocity = velocity
-		corpse.rotationSpeed = rotationSpeed
-		get_parent().add_child(corpse)
+	if !dead:
+		deadSprite.visible = true
+		aliveSprite.visible = false
+		set_collision_layer_bit(1, false)
+		particleEmitter.emitting = true
+		dead = true
 		
 		get_node("../HUD/ScoreLabel").increaseScore()
-		queue_free()
 
 func getDirection():
-	if player:
+	if player and !dead:
 		return (player.position - position).normalized()
 	else:
 		return Vector2(0,0)
 
 func _process(delta):
-	spinUp(delta)
+	if dead:
+		rotationSpeed *= pow(0.6, delta)
+	else:
+		spinUp(delta)

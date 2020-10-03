@@ -1,14 +1,21 @@
 extends "res://Scripts/IceScater.gd"
 
+signal playerDied
+
 onready var boostTimer = $BoostCooldownTimer
 onready var boostProgressBar = $BoostCooldownProgessBar
+onready var sprite = $Sprite
 
 func _ready():
 	pass
 
 func kill():
 	$"../ArenaCamera".make_current()
+	emit_signal("playerDied")
 	queue_free()
+
+func setSpriteRotation(rotation):
+	sprite.rotate(rotation)
 
 func getDirection():	
 	var x = int(Input.is_action_pressed("move_right")) - int(Input.is_action_pressed("move_left"))

@@ -1,6 +1,5 @@
 extends KinematicBody2D
 
-onready var sprite = $Sprite
 onready var healthBar = $HealthBar
 export var acceleration = 1000
 
@@ -34,7 +33,7 @@ func getHit(other, damage):
 		return true
 	return false
 
-func hitIceScater(collision):
+func hitIceScater(_collision):
 	pass
 
 func hitWall(collision):
@@ -43,6 +42,9 @@ func hitWall(collision):
 
 func spinUp(delta):
 	rotationSpeed = min(rotationSpeed + 10 * delta, maxRotationSpeed)
+
+func setSpriteRotation(_rotation):
+	pass
 
 func _process(delta):
 	velocity += getDirection() * acceleration * delta
@@ -56,4 +58,4 @@ func _process(delta):
 		else:
 			hitWall(collision)
 	
-	sprite.rotate(0.1 * delta * rotationSpeed)
+	setSpriteRotation(0.1 * delta * rotationSpeed)
