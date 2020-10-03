@@ -1,18 +1,21 @@
 extends Path2D
 
 onready var timer = $EnemySpawnTimer
-var enemyScene = load("res://Scenes/Enemy.tscn")
+var enemyScenes = [
+	load("res://Scenes/Enemy.tscn"),
+	load("res://Scenes/Cyborg.tscn")
+]
 export var minimumSpawnDistance = 500
 
 
 func _ready():
-	pass
+	spawnEnemy()
 
 func getNewSpawnPosition():
 	return curve.interpolate_baked(randf() * curve.get_baked_length(), false)
 
-func _on_EnemySpawnTimer_timeout():
-	var enemy = enemyScene.instance()
+func spawnEnemy():
+	var enemy = enemyScenes[randi() % enemyScenes.size()].instance()
 	
 	var attemptedSpawnPosition = getNewSpawnPosition()
 	var player = get_node("../Player")
@@ -22,9 +25,12 @@ func _on_EnemySpawnTimer_timeout():
 	
 	enemy.position = attemptedSpawnPosition
 	
-	get_parent().add_child(enemy)
+	get_parent().call_deferred("add_child", enemy)
 	enemy.connect("enemyDied", $"../WowPlayer", "playSfx")
 	enemy.connect("enemyDidNotDie", $"../BooPlayer", "playSfx")
+
+func _on_EnemySpawnTimer_timeout():
+	spawnEnemy()
 
 func _on_Player_playerDied():
 	timer.stop()

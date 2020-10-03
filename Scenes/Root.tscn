@@ -1,24 +1,22 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Scripts/Enemy.gd" type="Script" id=2]
 [ext_resource path="res://Resources/Graphics/Background.png" type="Texture" id=3]
 [ext_resource path="res://Scripts/EnemySpawnPath.gd" type="Script" id=4]
 [ext_resource path="res://Scripts/ScoreLabel.gd" type="Script" id=8]
 [ext_resource path="res://Resources/Fonts/Jacmax.ttf" type="DynamicFontData" id=9]
-[ext_resource path="res://Scenes/Cyborg.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Resources/Sounds/boo.wav" type="AudioStream" id=11]
 [ext_resource path="res://Resources/Sounds/wow.wav" type="AudioStream" id=12]
 [ext_resource path="res://Scripts/SfxPlayer.gd" type="Script" id=13]
 [ext_resource path="res://Scripts/Border.gd" type="Script" id=14]
 [ext_resource path="res://Scenes/OptionsScreen.tscn" type="PackedScene" id=15]
 
-[sub_resource type="Curve2D" id=2]
+[sub_resource type="Curve2D" id=1]
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 1137.59, 234.963, 0, 0, 0, 0, 661.882, 310.473, 0, 0, 0, 0, 322.088, 461.492, 0, 0, 0, 0, 193.721, 680.471, 0, 0, 0, 0, 261.68, 1012.71, 0, 0, 0, 0, 337.19, 1382.71, 0, 0, 0, 0, 465.556, 1699.85, 0, 0, 0, 0, 767.596, 1828.22, 0, 0, 0, 0, 1190.45, 1820.67, 0, 0, 0, 0, 1681.27, 1835.77, 0, 0, 0, 0, 1998.41, 1858.43, 0, 0, 0, 0, 2398.61, 1850.87, 0, 0, 0, 0, 2836.57, 1828.22, 0, 0, 0, 0, 3297.18, 1677.2, 0, 0, 0, 0, 3440.65, 1541.28, 0, 0, 0, 0, 3599.22, 1277, 0, 0, 0, 0, 3689.83, 1012.71, 0, 0, 0, 0, 3493.5, 748.43, 0, 0, 0, 0, 3206.57, 431.289, 0, 0, 0, 0, 2896.97, 287.82, 0, 0, 0, 0, 2496.77, 242.514, 0, 0, 0, 0, 2111.67, 197.208, 0, 0, 0, 0, 1734.12, 167.004, 0, 0, 0, 0, 1364.12, 189.657, 0, 0, 0, 0, 1137.59, 227.412 )
 }
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="DynamicFont" id=2]
 size = 80
 font_data = ExtResource( 9 )
 
@@ -50,12 +48,13 @@ polygon = PoolVector2Array( 288.705, 105.32, 162.989, 159.198, 57.4774, 257.975,
 one_way_collision_margin = 10.0
 
 [node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Border"]
+position = Vector2( -10.4164, 4.65754 )
 build_mode = 1
 polygon = PoolVector2Array( 902.993, 32.5243, 1006.82, 26.1675, 1121.24, 41, 1383.99, 55.8325, 1572.57, 108.806, 1703.95, 159.66, 1839.56, 299.509, 1915.84, 411.812, 1903.13, 596.159, 1824.73, 803.813, 1687, 903.403, 1436.96, 973.327, 1265.33, 1002.99, 1057.94, 992.375, 890.476, 1514.66, 1390.92, 1505.57, 2069.02, 1289.33, 2442.25, 811.541, 2410.74, 533.811, 2389.9, 158.578, 2102.55, 12.6583, 1873.57, -128.772, 1662.55, -337.55, 1238.26, -402.653, 1011.52, -330.815, 876.825, -245.508 )
 one_way_collision_margin = 10.0
 
 [node name="EnemySpawnPath" type="Path2D" parent="."]
-curve = SubResource( 2 )
+curve = SubResource( 1 )
 script = ExtResource( 4 )
 
 [node name="EnemySpawnTimer" type="Timer" parent="EnemySpawnPath"]
@@ -67,7 +66,7 @@ autostart = true
 [node name="ScoreLabel" type="Label" parent="HUD"]
 margin_left = 50.0
 margin_top = 50.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 1, 0.0823529, 0, 1 )
 text = "0
 
@@ -80,10 +79,6 @@ __meta__ = {
 [node name="OptionsScreen" parent="HUD" instance=ExtResource( 15 )]
 pause_mode = 2
 visible = false
-
-[node name="Cyborg" parent="." instance=ExtResource( 10 )]
-position = Vector2( 1654.99, 496.229 )
-script = ExtResource( 2 )
 
 [node name="BooPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 11 )
