@@ -6,4 +6,7 @@ func _ready():
 	pass
 
 func getDirection():
-	return (player.position - position).normalized()
+	if player:
+		return (player.position - position).normalized()
+	else:
+		return Vector2(0,0)
