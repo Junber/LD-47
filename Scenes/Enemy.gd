@@ -8,12 +8,15 @@ func _ready():
 
 func kill():
 	if !is_queued_for_deletion():
+		
 		var corpse = corpseScene.instance()
 		corpse.position = position
 		corpse.rotation = rotation
 		corpse.velocity = velocity
 		corpse.rotationSpeed = rotationSpeed
 		get_parent().add_child(corpse)
+		
+		get_node("../HUD/ScoreLabel").increaseScore()
 		queue_free()
 
 func getDirection():

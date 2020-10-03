@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://Resources/Graphics/Player.png" type="Texture" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://Scenes/Enemy.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Resources/Graphics/BoostTimer.png" type="Texture" id=6]
 [ext_resource path="res://Resources/Graphics/Health.png" type="Texture" id=7]
+[ext_resource path="res://Scripts/ScoreLabel.gd" type="Script" id=8]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 40.0
@@ -88,4 +89,16 @@ script = ExtResource( 4 )
 [node name="EnemySpawnTimer" type="Timer" parent="EnemySpawnPath"]
 wait_time = 5.0
 autostart = true
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="ScoreLabel" type="Label" parent="HUD"]
+margin_right = 40.0
+margin_bottom = 31.0
+text = "Hallo
+"
+script = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 [connection signal="timeout" from="EnemySpawnPath/EnemySpawnTimer" to="EnemySpawnPath" method="_on_EnemySpawnTimer_timeout"]
