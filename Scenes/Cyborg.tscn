@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Scenes/Enemy.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Resources/Graphics/Cyborg.png" type="Texture" id=2]
 [ext_resource path="res://Resources/Graphics/CyborgDead.png" type="Texture" id=3]
 [ext_resource path="res://Resources/Graphics/LaserSparks.png" type="Texture" id=4]
 [ext_resource path="res://Scripts/Laser.gd" type="Script" id=5]
+[ext_resource path="res://Resources/Graphics/LaserNew.png" type="Texture" id=6]
 
 [sub_resource type="Curve" id=1]
 min_value = -360.0
@@ -36,8 +37,10 @@ scale_random = 0.13
 color_ramp = SubResource( 4 )
 
 [node name="Cyborg" instance=ExtResource( 1 )]
+position = Vector2( 348.998, 159.75 )
 
 [node name="DeadSprite" parent="." index="1"]
+visible = true
 texture = ExtResource( 3 )
 
 [node name="AliveSprite" parent="." index="2"]
@@ -51,9 +54,11 @@ collision_mask = 7
 script = ExtResource( 5 )
 
 [node name="LaserBeam" type="Line2D" parent="Laser" index="0"]
-points = PoolVector2Array( 0, 0, 0, 100 )
-width = 3.0
-default_color = Color( 1, 0, 0, 1 )
+points = PoolVector2Array( 0, 0, 0, 29.6015, 0, 45.0703, 0, 75.5, 0, 100 )
+width = 20.0
+default_color = Color( 1, 1, 1, 1 )
+texture = ExtResource( 6 )
+texture_mode = 2
 
 [node name="Sparks" type="Particles2D" parent="Laser" index="1"]
 scale = Vector2( 1.02952, 1.02117 )
