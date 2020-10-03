@@ -80,7 +80,8 @@ margin_top = 36.5377
 margin_right = -2.60174
 margin_bottom = 46.5377
 rect_scale = Vector2( 2, 2 )
-value = 100.0
+max_value = 1e+06
+value = 1e+06
 texture_progress = ExtResource( 7 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -110,7 +111,6 @@ curve = SubResource( 4 )
 script = ExtResource( 4 )
 
 [node name="EnemySpawnTimer" type="Timer" parent="EnemySpawnPath"]
-wait_time = 5.0
 autostart = true
 
 [node name="HUD" type="CanvasLayer" parent="."]
