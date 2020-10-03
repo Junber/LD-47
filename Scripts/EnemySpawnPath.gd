@@ -8,6 +8,7 @@ var enemyScenes = [
 ]
 export var minimumSpawnDistance = 500
 
+signal enemySpawned(enemy)
 
 func _ready():
 	randomize()
@@ -30,6 +31,7 @@ func spawnEnemy():
 	get_parent().call_deferred("add_child", enemy)
 	enemy.connect("enemyDied", $"../WowPlayer", "playSfx")
 	enemy.connect("enemyDidNotDie", $"../BooPlayer", "playSfx")
+	emit_signal("enemySpawned", enemy)
 
 func _on_EnemySpawnTimer_timeout():
 	spawnEnemy()
