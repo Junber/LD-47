@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Resources/Graphics/Blood.png" type="Texture" id=1]
 [ext_resource path="res://Resources/Graphics/Dead Enemy.png" type="Texture" id=2]
-[ext_resource path="res://Scenes/Corpse.gd" type="Script" id=3]
+[ext_resource path="res://Scripts/Corpse.gd" type="Script" id=3]
 
 [sub_resource type="Gradient" id=1]
 offsets = PoolRealArray( 0, 0.9, 1 )
