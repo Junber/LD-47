@@ -9,6 +9,9 @@ onready var sprite = $Sprite
 func _ready():
 	pass
 
+func collideWithIceScater(collider):
+	pass
+
 func kill():
 	$"../ArenaCamera".make_current()
 	emit_signal("playerDied")

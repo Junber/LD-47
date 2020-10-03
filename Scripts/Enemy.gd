@@ -13,14 +13,15 @@ var dead = false
 func _ready():
 	pass
 
-func hitIceScater(collision):
+func collideWithIceScater(collider):
+	.collideWithIceScater(collider)
 	var damageToOther = damageDealt()
-	if getHit(collision.collider, collision.collider.damageDealt()):
+	if takeDamage(collider.damageDealt()):
 		damageToOther = 0
 		emit_signal("enemyDied")
 	else:
 		emit_signal("enemyDidNotDie")
-	collision.collider.getHit(self, damageToOther)
+	collider.takeDamage(damageToOther)
 
 func setSpriteRotation(rotation):
 	deadSprite.rotate(rotation)

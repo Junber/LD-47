@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://Resources/Graphics/Player.png" type="Texture" id=2]
@@ -13,6 +13,7 @@
 [ext_resource path="res://Resources/Sounds/boo.wav" type="AudioStream" id=11]
 [ext_resource path="res://Resources/Sounds/wow.wav" type="AudioStream" id=12]
 [ext_resource path="res://Scripts/SfxPlayer.gd" type="Script" id=13]
+[ext_resource path="res://Scripts/Border.gd" type="Script" id=14]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 40.0
@@ -85,8 +86,8 @@ margin_top = 36.5377
 margin_right = -2.60174
 margin_bottom = 46.5377
 rect_scale = Vector2( 2, 2 )
-max_value = 100000.0
-value = 100000.0
+max_value = 100.0
+value = 100.0
 texture_progress = ExtResource( 7 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -100,6 +101,7 @@ collision_mask = 4
 scale = Vector2( 2, 2 )
 collision_layer = 4
 collision_mask = 0
+script = ExtResource( 14 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Border"]
 build_mode = 1
@@ -116,7 +118,7 @@ curve = SubResource( 2 )
 script = ExtResource( 4 )
 
 [node name="EnemySpawnTimer" type="Timer" parent="EnemySpawnPath"]
-wait_time = 4096.0
+wait_time = 5.0
 autostart = true
 
 [node name="HUD" type="CanvasLayer" parent="."]
