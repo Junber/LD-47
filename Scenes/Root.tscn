@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://Resources/Graphics/Player.png" type="Texture" id=2]
@@ -9,9 +9,10 @@
 [ext_resource path="res://Resources/Graphics/Health.png" type="Texture" id=7]
 [ext_resource path="res://Scripts/ScoreLabel.gd" type="Script" id=8]
 [ext_resource path="res://Resources/Fonts/Jacmax.ttf" type="DynamicFontData" id=9]
-[ext_resource path="res://Resources/Sounds/boo.wav" type="AudioStream" id=10]
-[ext_resource path="res://Resources/Sounds/wow.wav" type="AudioStream" id=11]
-[ext_resource path="res://Scripts/SfxPlayer.gd" type="Script" id=12]
+[ext_resource path="res://Scenes/Cyborg.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Resources/Sounds/boo.wav" type="AudioStream" id=11]
+[ext_resource path="res://Resources/Sounds/wow.wav" type="AudioStream" id=12]
+[ext_resource path="res://Scripts/SfxPlayer.gd" type="Script" id=13]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 40.0
@@ -26,6 +27,7 @@ size = 80
 font_data = ExtResource( 9 )
 
 [node name="Root" type="Node2D"]
+scale = Vector2( 1.00172, 0.998806 )
 
 [node name="ArenaCamera" type="Camera2D" parent="."]
 anchor_mode = 0
@@ -83,7 +85,8 @@ margin_top = 36.5377
 margin_right = -2.60174
 margin_bottom = 46.5377
 rect_scale = Vector2( 2, 2 )
-value = 100.0
+max_value = 100000.0
+value = 100000.0
 texture_progress = ExtResource( 7 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -100,12 +103,12 @@ collision_mask = 0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Border"]
 build_mode = 1
-polygon = PoolVector2Array( 288.705, 105.32, 162.989, 159.198, 57.4774, 257.975, 52.9875, 372.466, 68.702, 547.57, 122.58, 702.47, 142.784, 834.92, 237.071, 906.758, 434.625, 965.126, 587.279, 974.106, 796.057, 987.575, 944.222, 998.8, 1056.47, 992.065, 881.106, 1520.43, 144.884, 1471.35, -118.329, 1111.06, -152.232, 776.267, -220.037, 566.494, -179.778, 104.568, 78.7311, -105.206, 549.133, -225.985, 794.928, -168.774, 1064.03, -175.13, 908.304, 33.4825, 634.423, 49.197, 551.361, 67.1564, 414.42, 103.075 )
+polygon = PoolVector2Array( 288.705, 105.32, 162.989, 159.198, 57.4774, 257.975, 52.9875, 372.466, 68.702, 547.57, 122.58, 702.47, 142.784, 834.92, 237.071, 906.758, 434.625, 965.126, 587.279, 974.106, 796.057, 987.575, 944.222, 998.8, 1056.47, 992.065, 881.106, 1520.43, 144.884, 1471.35, -118.329, 1111.06, -152.232, 776.267, -220.037, 566.494, -179.778, 104.568, 78.7311, -105.206, 549.133, -225.985, 794.928, -168.774, 873.396, -243.378, 902.947, 33.54, 634.423, 49.197, 551.361, 67.1564, 414.42, 103.075 )
 one_way_collision_margin = 10.0
 
 [node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Border"]
 build_mode = 1
-polygon = PoolVector2Array( 902.993, 32.5243, 1006.82, 26.1675, 1121.24, 41, 1383.99, 55.8325, 1572.57, 108.806, 1703.95, 159.66, 1839.56, 299.509, 1915.84, 411.812, 1903.13, 596.159, 1824.73, 803.813, 1687, 903.403, 1436.96, 973.327, 1265.33, 1002.99, 1053.44, 990.279, 907.711, 1369.42, 1390.92, 1505.57, 2069.02, 1289.33, 2442.25, 811.541, 2410.74, 533.811, 2389.9, 158.578, 2102.55, 12.6583, 1873.57, -128.772, 1662.55, -337.55, 1238.26, -402.653, 1011.52, -330.815, 876.825, -245.508 )
+polygon = PoolVector2Array( 902.993, 32.5243, 1006.82, 26.1675, 1121.24, 41, 1383.99, 55.8325, 1572.57, 108.806, 1703.95, 159.66, 1839.56, 299.509, 1915.84, 411.812, 1903.13, 596.159, 1824.73, 803.813, 1687, 903.403, 1436.96, 973.327, 1265.33, 1002.99, 1057.94, 992.375, 890.476, 1514.66, 1390.92, 1505.57, 2069.02, 1289.33, 2442.25, 811.541, 2410.74, 533.811, 2389.9, 158.578, 2102.55, 12.6583, 1873.57, -128.772, 1662.55, -337.55, 1238.26, -402.653, 1011.52, -330.815, 876.825, -245.508 )
 one_way_collision_margin = 10.0
 
 [node name="EnemySpawnPath" type="Path2D" parent="."]
@@ -113,6 +116,7 @@ curve = SubResource( 2 )
 script = ExtResource( 4 )
 
 [node name="EnemySpawnTimer" type="Timer" parent="EnemySpawnPath"]
+wait_time = 4096.0
 autostart = true
 
 [node name="HUD" type="CanvasLayer" parent="."]
@@ -130,16 +134,19 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Cyborg" parent="." instance=ExtResource( 10 )]
+position = Vector2( 1654.99, 496.229 )
+
 [node name="BooPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 10 )
+stream = ExtResource( 11 )
 bus = "SFX"
-script = ExtResource( 12 )
+script = ExtResource( 13 )
 pitchVariation = 0.5
 
 [node name="WowPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 11 )
+stream = ExtResource( 12 )
 bus = "SFX"
-script = ExtResource( 12 )
+script = ExtResource( 13 )
 pitchVariation = 0.5
 [connection signal="playerDied" from="Player" to="EnemySpawnPath" method="_on_Player_playerDied"]
 [connection signal="enemyDidNotDie" from="Enemy" to="BooPlayer" method="playSfx"]
