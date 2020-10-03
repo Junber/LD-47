@@ -5,9 +5,6 @@ onready var player = $"../Player"
 signal enemyDied
 signal enemyDidNotDie
 
-func _ready():
-	pass
-
 func collideWithIceScater(collider):
 	bounceOffOfIceScater(collider)
 	var damageToOther = damageDealt()

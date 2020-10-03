@@ -5,12 +5,6 @@ signal playerDied
 onready var boostTimer = $BoostCooldownTimer
 onready var boostProgressBar = $BoostCooldownProgessBar
 
-func _ready():
-	pass
-
-func collideWithIceScater(_collider):
-	pass
-
 func kill():
 	if !dead:
 		.kill()
