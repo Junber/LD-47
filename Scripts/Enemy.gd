@@ -13,14 +13,16 @@ var dead = false
 func _ready():
 	pass
 
-func hitIceScater(collision):
+func collideWithIceScater(collider):
+	bounceOffOfIceScater(collider)
 	var damageToOther = damageDealt()
-	if getHit(collision.collider, collision.collider.damageDealt()):
+	if takeDamage(collider.damageDealt()):
 		damageToOther = 0
 		emit_signal("enemyDied")
 	else:
 		emit_signal("enemyDidNotDie")
-	collision.collider.getHit(self, damageToOther)
+	collider.bounceOffOfIceScater(self)
+	collider.takeDamage(damageToOther)
 
 func setSpriteRotation(rotation):
 	deadSprite.rotate(rotation)
@@ -30,7 +32,7 @@ func kill():
 	if !dead:
 		deadSprite.visible = true
 		aliveSprite.visible = false
-		set_collision_layer_bit(1, false)
+		set_collision_mask_bit(0, false)
 		particleEmitter.emitting = true
 		dead = true
 		

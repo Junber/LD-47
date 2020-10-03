@@ -11,6 +11,20 @@ var rotationSpeed = 1
 func _ready():
 	pass
 
+func collideWithWall(_collider, collision):
+	velocity = velocity.bounce(collision.normal) / 2
+	rotationSpeed /= 2
+	
+func collideWithIceScater(collider):
+	pass
+
+func bounceOffOfIceScater(collider):
+	velocity = (position - collider.position).normalized() * velocity.length() / 2
+	rotationSpeed /= 2
+
+func getHitBy(collider, _collision):
+	collider.collideWithIceScater(self)
+
 func getDirection():
 	return Vector2(0,0)
 
@@ -24,10 +38,8 @@ func damageDealt():
 func kill():
 	queue_free()
 
-func getHit(other, damage):
-	velocity = (position - other.position).normalized() * velocity.length() / 2
-	rotationSpeed /= 2
-	healthBar.value -= damage
+func takeDamage(amount):
+	healthBar.value -= amount
 	if healthBar.value <= 0:
 		kill()
 		return true
@@ -35,10 +47,6 @@ func getHit(other, damage):
 
 func hitIceScater(_collision):
 	pass
-
-func hitWall(collision):
-	velocity = velocity.bounce(collision.normal) / 2
-	rotationSpeed /= 2
 
 func spinUp(delta):
 	rotationSpeed = min(rotationSpeed + 10 * delta, maxRotationSpeed)
@@ -53,9 +61,6 @@ func _process(delta):
 	
 	var collision = move_and_collide(velocity * delta)
 	if collision:
-		if collision.collider.has_method("getHit"):
-			hitIceScater(collision)
-		else:
-			hitWall(collision)
+		collision.collider.getHitBy(self, collision)
 	
 	setSpriteRotation(0.1 * delta * rotationSpeed)

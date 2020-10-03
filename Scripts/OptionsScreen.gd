@@ -26,6 +26,7 @@ func _ready():
 	set_resolution_options()
 	initialze_resolution_setting()
 	load_options()
+	#warning-ignore:return_value_discarded
 	get_tree().get_root().connect("size_changed", self, "windowResized")
 
 func windowResized():
