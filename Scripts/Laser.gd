@@ -1,6 +1,7 @@
 extends RayCast2D
 
 onready var laserBeam = $LaserBeam
+onready var laserSparks = $Sparks
 export var damage = 10;
 
 func getHitBy(collider, collision):
@@ -20,7 +21,8 @@ func _physics_process(delta):
 	rotation += delta
 	
 	if is_colliding():
-		var point = get_collision_point()
-		laserBeam.points[1]=to_local(point)
+		var point = to_local(get_collision_point())
+		laserBeam.points[1]=point
+		laserSparks.position=point
 		get_collider().getHitBy(self, null)
 
