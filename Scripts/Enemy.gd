@@ -5,6 +5,9 @@ onready var deadSprite = $DeadSprite
 onready var aliveSprite = $AliveSprite
 onready var particleEmitter = $BloodParticles
 
+signal enemyDied
+signal enemyDidNotDie
+
 var dead = false
 
 func _ready():
@@ -14,6 +17,9 @@ func hitIceScater(collision):
 	var damageToOther = damageDealt()
 	if getHit(collision.collider, collision.collider.damageDealt()):
 		damageToOther = 0
+		emit_signal("enemyDied")
+	else:
+		emit_signal("enemyDidNotDie")
 	collision.collider.getHit(self, damageToOther)
 
 func setSpriteRotation(rotation):

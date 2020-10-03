@@ -23,7 +23,8 @@ func _on_EnemySpawnTimer_timeout():
 	enemy.position = attemptedSpawnPosition
 	
 	get_parent().add_child(enemy)
-
+	enemy.connect("enemyDied", $"../WowPlayer", "playSfx")
+	enemy.connect("enemyDidNotDie", $"../BooPlayer", "playSfx")
 
 func _on_Player_playerDied():
 	timer.stop()
