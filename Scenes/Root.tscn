@@ -13,7 +13,7 @@
 [sub_resource type="CircleShape2D" id=1]
 radius = 40.0
 
-[sub_resource type="Curve2D" id=4]
+[sub_resource type="Curve2D" id=2]
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 1137.59, 234.963, 0, 0, 0, 0, 661.882, 310.473, 0, 0, 0, 0, 322.088, 461.492, 0, 0, 0, 0, 193.721, 680.471, 0, 0, 0, 0, 261.68, 1012.71, 0, 0, 0, 0, 337.19, 1382.71, 0, 0, 0, 0, 465.556, 1699.85, 0, 0, 0, 0, 767.596, 1828.22, 0, 0, 0, 0, 1190.45, 1820.67, 0, 0, 0, 0, 1681.27, 1835.77, 0, 0, 0, 0, 1998.41, 1858.43, 0, 0, 0, 0, 2398.61, 1850.87, 0, 0, 0, 0, 2836.57, 1828.22, 0, 0, 0, 0, 3297.18, 1677.2, 0, 0, 0, 0, 3440.65, 1541.28, 0, 0, 0, 0, 3599.22, 1277, 0, 0, 0, 0, 3689.83, 1012.71, 0, 0, 0, 0, 3493.5, 748.43, 0, 0, 0, 0, 3206.57, 431.289, 0, 0, 0, 0, 2896.97, 287.82, 0, 0, 0, 0, 2496.77, 242.514, 0, 0, 0, 0, 2111.67, 197.208, 0, 0, 0, 0, 1734.12, 167.004, 0, 0, 0, 0, 1364.12, 189.657, 0, 0, 0, 0, 1137.59, 227.412 )
 }
@@ -80,8 +80,7 @@ margin_top = 36.5377
 margin_right = -2.60174
 margin_bottom = 46.5377
 rect_scale = Vector2( 2, 2 )
-max_value = 1e+06
-value = 1e+06
+value = 100.0
 texture_progress = ExtResource( 7 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -107,7 +106,7 @@ polygon = PoolVector2Array( 902.993, 32.5243, 1006.82, 26.1675, 1121.24, 41, 138
 one_way_collision_margin = 10.0
 
 [node name="EnemySpawnPath" type="Path2D" parent="."]
-curve = SubResource( 4 )
+curve = SubResource( 2 )
 script = ExtResource( 4 )
 
 [node name="EnemySpawnTimer" type="Timer" parent="EnemySpawnPath"]
