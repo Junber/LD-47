@@ -132,11 +132,13 @@ __meta__ = {
 
 [node name="BooPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 10 )
+bus = "SFX"
 script = ExtResource( 12 )
 pitchVariation = 0.5
 
 [node name="WowPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 11 )
+bus = "SFX"
 script = ExtResource( 12 )
 pitchVariation = 0.5
 [connection signal="playerDied" from="Player" to="EnemySpawnPath" method="_on_Player_playerDied"]
