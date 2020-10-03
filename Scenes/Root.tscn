@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://Resources/Graphics/Player.png" type="Texture" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://Resources/Graphics/BoostTimer.png" type="Texture" id=6]
 [ext_resource path="res://Resources/Graphics/Health.png" type="Texture" id=7]
 [ext_resource path="res://Scripts/ScoreLabel.gd" type="Script" id=8]
+[ext_resource path="res://Resources/Fonts/Jacmax.ttf" type="DynamicFontData" id=9]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 40.0
@@ -16,6 +17,10 @@ radius = 40.0
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 850.818, 63.2477, 0, 0, 0, 0, 924.817, 59.8842, 0, 0, 0, 0, 1059.36, 59.8842, 0, 0, 0, 0, 1170.36, 73.3384, 0, 0, 0, 0, 1331.81, 90.1564, 0, 0, 0, 0, 1402.45, 103.611, 0, 0, 0, 0, 1516.81, 140.61, 0, 0, 0, 0, 1651.35, 170.882, 0, 0, 0, 0, 1718.62, 211.245, 0, 0, 0, 0, 1769.08, 265.063, 0, 0, 0, 0, 1859.89, 365.97, 0, 0, 0, 0, 1893.53, 463.514, 0, 0, 0, 0, 1853.17, 628.33, 0, 0, 0, 0, 1799.35, 766.237, 0, 0, 0, 0, 1671.53, 900.781, 0, 0, 0, 0, 1489.9, 944.507, 0, 0, 0, 0, 1230.9, 961.325, 0, 0, 0, 0, 938.271, 964.689, 0, 0, 0, 0, 760.001, 941.144, 0, 0, 0, 0, 598.549, 931.053, 0, 0, 0, 0, 477.46, 904.144, 0, 0, 0, 0, 363.098, 867.145, 0, 0, 0, 0, 268.918, 806.6, 0, 0, 0, 0, 215.1, 739.328, 0, 0, 0, 0, 208.373, 665.33, 0, 0, 0, 0, 157.919, 584.604, 0, 0, 0, 0, 110.829, 490.423, 0, 0, 0, 0, 114.193, 369.334, 0, 0, 0, 0, 171.374, 298.699, 0, 0, 0, 0, 225.191, 217.973, 0, 0, 0, 0, 265.554, 177.61, 0, 0, 0, 0, 309.281, 154.065, 0, 0, 0, 0, 390.007, 140.61, 0, 0, 0, 0, 494.278, 147.337, 0, 0, 0, 0, 615.367, 130.519, 0, 0, 0, 0, 642.276, 117.065, 0, 0, 0, 0, 696.093, 103.611, 0, 0, 0, 0, 756.637, 86.7928, 0, 0, 0, 0, 823.909, 63.2477, 0, 0, 0, 0, 854.182, 59.8842 )
 }
+
+[sub_resource type="DynamicFont" id=4]
+size = 80
+font_data = ExtResource( 9 )
 
 [node name="Root" type="Node2D"]
 
@@ -93,9 +98,12 @@ autostart = true
 [node name="HUD" type="CanvasLayer" parent="."]
 
 [node name="ScoreLabel" type="Label" parent="HUD"]
-margin_right = 40.0
-margin_bottom = 31.0
-text = "Hallo
+margin_left = 50.0
+margin_top = 50.0
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color = Color( 1, 0.0823529, 0, 1 )
+text = "0
+
 "
 script = ExtResource( 8 )
 __meta__ = {
