@@ -8,6 +8,8 @@ var enemyScenes = [
 ]
 export var minimumSpawnDistance = 500
 
+var numberOfEnemies = 0
+
 signal enemySpawned(enemy)
 
 func _ready():
@@ -30,10 +32,19 @@ func spawnEnemy():
 	
 	get_parent().call_deferred("add_child", enemy)
 	enemy.connect("enemyDied", $"../WowPlayer", "playSfx")
-	enemy.connect("enemyDied", $"../KillSlowdownTimer", "slowDown")
-	enemy.connect("enemyDied", $"../Player", "enemyDied")
-	enemy.connect("enemyDidNotDie", $"../BooPlayer", "playSfx")
+	enemy.connect("enemyKilledByPlayer", $"../KillSlowdownTimer", "slowDown")
+	enemy.connect("enemyKilledByPlayer", $"../Player", "enemyDied")
+	enemy.connect("enemyDied", self, "enemyDied")
+	enemy.connect("enemyNotKilledByPlayer", $"../BooPlayer", "playSfx")
 	emit_signal("enemySpawned", enemy)
+	numberOfEnemies += 1
+	
+	timer.start(3 + pow(numberOfEnemies - 1, 2))
+
+func enemyDied():
+	numberOfEnemies -= 1
+	if numberOfEnemies <= 0:
+		spawnEnemy()
 
 func _on_EnemySpawnTimer_timeout():
 	spawnEnemy()

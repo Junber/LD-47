@@ -3,7 +3,8 @@ extends "res://Scripts/IceScater.gd"
 onready var player = $"../Player"
 
 signal enemyDied
-signal enemyDidNotDie
+signal enemyKilledByPlayer
+signal enemyNotKilledByPlayer
 
 func protected(_collider):
 	return false
@@ -18,11 +19,11 @@ func collideWithIceScater(collider):
 		changeHealth(collider.damageDealt())
 		if dead:
 			damageToOther = 0
-			emit_signal("enemyDied")
+			emit_signal("enemyKilledByPlayer")
 		else:
-			emit_signal("enemyDidNotDie")
+			emit_signal("enemyNotKilledByPlayer")
 	else:
-		emit_signal("enemyDidNotDie")
+		emit_signal("enemyNotKilledByPlayer")
 	collider.bounceOffOfIceScater(self)
 	collider.changeHealth(damageToOther)
 
@@ -41,6 +42,7 @@ func kill():
 		checkDrop()
 		set_collision_mask_bit(0, false)
 		get_node("../HUD/ScoreLabel").increaseScore()
+		emit_signal("enemyDied")
 
 func getDirection():
 	if !dead and !player.dead:
