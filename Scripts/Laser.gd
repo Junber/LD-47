@@ -16,4 +16,12 @@ func _physics_process(delta):
 		laserBeam.points[1] = laserEndPoint
 		laserSparks.position = laserEndPoint
 	get_collider().collideWithLaser(get_parent(), damage * delta)
+	
+	var offset = global_position - $"../../Player".global_position
+	var normal = (cast_to - position).normalized()
+	var dist = (offset - (offset.dot(normal) * normal)).length()
+	$LaserSoundPlayer.pitch_scale = dist / 1000
 
+
+func _on_LaserSoundPlayer_finished():
+	$LaserSoundPlayer.play()
