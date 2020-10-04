@@ -5,15 +5,16 @@ export var damage = -20
 
 func getHitBy(collider, _collision):
 	if !is_queued_for_deletion():
-s		collider.collideWithBullet(self)
+		collider.collideWithBullet(self)
 		queue_free()
 	
 func collideWithWall(_collider, _collision):
 	queue_free()
 
-func collideWithBullet(self):
+func collideWithBullet(collider):
 	if !is_queued_for_deletion():
-	queue_free()
+		queue_free()
+		collider.queue_free()
 
 func collideWithPlayer(collider):
 	getHitBy(collider, null)
