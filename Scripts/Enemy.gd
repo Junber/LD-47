@@ -14,9 +14,10 @@ func collideWithPlayer(collider):
 		return
 		
 	var damageToOther = damageDealt()
+	var velocityLength = (velocity.length() + collider.velocity.length()) / 2
 	if !protected(collider):
 		var damageToSelf = collider.damageDealt()
-		bounceOffOfIceScater(collider)
+		bounceOffOfIceScater(collider, velocityLength)
 		changeHealth(damageToSelf)
 		if dead:
 			damageToOther = 0
@@ -28,7 +29,7 @@ func collideWithPlayer(collider):
 	else:
 		emit_signal("enemyNotKilledByPlayer")
 	if !collider.protected(collider):
-		collider.bounceOffOfIceScater(self)
+		collider.bounceOffOfIceScater(self, velocityLength)
 		collider.changeHealth(damageToOther)
 
 func collideWithEnemy(collider):
@@ -36,10 +37,11 @@ func collideWithEnemy(collider):
 		return
 		
 	var damageToOther = damageDealt()
+	var velocityLength = (velocity.length() + collider.velocity.length()) / 2
 	if !protected(collider):
-		bounceOffOfIceScater(collider)
+		bounceOffOfIceScater(collider, velocityLength)
 		changeHealth(collider.damageDealt())
-	if !collider.protected(collider):
+	if !collider.protected(collider, velocityLength):
 		collider.bounceOffOfIceScater(self)
 		collider.changeHealth(damageToOther)
 

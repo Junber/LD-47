@@ -36,8 +36,8 @@ func collideWithBullet(collider):
 func collideWithIceScater(_collider):
 	pass
 
-func bounceOffOfIceScater(collider):
-	velocity = (position - collider.position).normalized() * (velocity.length() + collider.velocity.length()) / 2
+func bounceOffOfIceScater(collider, velocityLength):
+	velocity = (position - collider.position).normalized() * velocityLength
 	rotationSpeed /= 2
 
 func getDirection():
