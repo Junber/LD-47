@@ -47,13 +47,13 @@ texture = ExtResource( 3 )
 shape = SubResource( 1 )
 
 [node name="HealthBar" type="TextureProgress" parent="."]
-margin_left = -50.2425
-margin_top = 21.6965
-margin_right = -0.242523
-margin_bottom = 31.6965
-rect_scale = Vector2( 2, 2 )
+margin_left = -40.0
+margin_top = -40.0
+margin_right = 40.0
+margin_bottom = 40.0
 value = 100.0
 texture_progress = ExtResource( 2 )
+fill_mode = 4
 __meta__ = {
 "_edit_use_anchors_": false
 }

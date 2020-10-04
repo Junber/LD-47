@@ -41,6 +41,7 @@ func kill():
 		.kill()
 		checkDrop()
 		set_collision_mask_bit(0, false)
+		set_collision_layer_bit(1, false)
 		get_node("../HUD/ScoreLabel").increaseScore()
 		emit_signal("enemyDied")
 
