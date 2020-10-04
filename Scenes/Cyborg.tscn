@@ -6,9 +6,10 @@
 [ext_resource path="res://Resources/Graphics/LaserSparks.png" type="Texture" id=4]
 [ext_resource path="res://Scripts/Laser.gd" type="Script" id=5]
 [ext_resource path="res://Resources/Graphics/LaserNew.png" type="Texture" id=6]
-[ext_resource path="res://Cyborg.gd" type="Script" id=7]
+[ext_resource path="res://Scripts/Cyborg.gd" type="Script" id=7]
 [ext_resource path="res://Resources/Sounds/laser.wav" type="AudioStream" id=8]
 [ext_resource path="res://Resources/Sounds/laserStartingUp.wav" type="AudioStream" id=9]
+
 
 [sub_resource type="Curve" id=1]
 min_value = -360.0
