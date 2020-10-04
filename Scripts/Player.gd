@@ -21,10 +21,9 @@ func protected(_collider):
 var bulletScene = load("res://Scenes/Bullet.tscn")
 
 var bulletsLeft = 0
-
 func changeHealth(amount):
 	if amount < 0:
-		$PlayerCamera.startScreenshake()
+		$"PlayerCamera/Screenshaker".start()
 	.changeHealth(amount)
 
 func kill():
