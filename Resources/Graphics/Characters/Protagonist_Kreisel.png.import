@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Protagonist_Kreisel.png-d587e5586cfc132f3678075a5f7d22d1.stex"
+path="res://.import/Protagonist_Kreisel.png-e6ae52fe03160466915a75ef6c2647eb.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Resources/Graphics/Protagonist_Kreisel.png"
-dest_files=[ "res://.import/Protagonist_Kreisel.png-d587e5586cfc132f3678075a5f7d22d1.stex" ]
+source_file="res://Resources/Graphics/Characters/Protagonist_Kreisel.png"
+dest_files=[ "res://.import/Protagonist_Kreisel.png-e6ae52fe03160466915a75ef6c2647eb.stex" ]
 
 [params]
 
