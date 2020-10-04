@@ -6,7 +6,7 @@ func getHitBy(collider, _collision):
 	pass
 
 func getUsed():
-	pass
+	queue_free()
 
 func collideWithWall(_collider, collision):
 	velocity = velocity.bounce(collision.normal) / 2
