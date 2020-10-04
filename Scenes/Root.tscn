@@ -43,6 +43,7 @@ texture = ExtResource( 3 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 1019.09, 725.787 )
+rotationIncrease = 100
 
 [node name="Border" type="StaticBody2D" parent="."]
 scale = Vector2( 2, 2 )
@@ -69,6 +70,10 @@ wait_time = 3.0
 one_shot = true
 
 [node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="OptionsScreen" parent="HUD" instance=ExtResource( 15 )]
+pause_mode = 2
+visible = false
 
 [node name="EnemyIndicators" type="Node2D" parent="HUD"]
 script = ExtResource( 2 )
@@ -131,14 +136,6 @@ __meta__ = {
 [node name="ScoreLabelEffectTimer" type="Timer" parent="HUD/ScoreSystem"]
 wait_time = 0.2
 one_shot = true
-
-[node name="OptionsScreenLayer" type="CanvasLayer" parent="."]
-pause_mode = 2
-layer = 2
-
-[node name="OptionsScreen" parent="OptionsScreenLayer" instance=ExtResource( 15 )]
-pause_mode = 2
-visible = false
 
 [node name="BooPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 11 )

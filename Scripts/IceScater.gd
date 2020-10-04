@@ -8,7 +8,9 @@ export var acceleration = 1000
 
 export var health = 160
 
-const maxRotationSpeed = 1000
+const maxRotationSpeed = 600
+
+export var rotationIncrease = 50
 
 var velocity = Vector2(0,0)
 var rotationSpeed = 1
@@ -64,7 +66,7 @@ func changeHealth(amount):
 		kill()
 
 func spinUp(delta):
-	rotationSpeed = min(rotationSpeed + 10 * delta, maxRotationSpeed)
+	rotationSpeed = min(rotationSpeed + rotationIncrease * delta, maxRotationSpeed)
 
 func setSpriteRotation(rotation):
 	deadSprite.rotate(rotation)
