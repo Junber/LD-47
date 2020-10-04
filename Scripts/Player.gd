@@ -25,10 +25,12 @@ func getDirection():
 	if dead:
 		return Vector2(0,0)
 	else:
-		var x = int(Input.is_action_pressed("move_right")) - int(Input.is_action_pressed("move_left"))
-		var y = int(Input.is_action_pressed("move_down")) - int(Input.is_action_pressed("move_up"))
-		
-		return Vector2(x,y)
+		if Input.is_mouse_button_pressed(1):
+			return position.direction_to(get_global_mouse_position())
+		else:
+			var x = int(Input.is_action_pressed("move_right")) - int(Input.is_action_pressed("move_left"))
+			var y = int(Input.is_action_pressed("move_down")) - int(Input.is_action_pressed("move_up"))
+			return Vector2(x,y).normalized()
 
 func enemyDied():
 	$PlayerCamera.zoom = $PlayerCamera.zoom * 0.6
