@@ -17,13 +17,15 @@ func increaseScore(amount):
 	score += round(pow(currentStreak, 1.5)) * 100
 	$ScoreLabel.text = str(score)
 
+func endStreak():
+	increaseScore(currentStreak)
+	currentStreak = 0
+	showStreak()
+
 func _process(delta):
 	$ComboBar.value = $ComboBar.value - delta
-	print($ComboBar.value)
 	if $ComboBar.value == 0:
-		increaseScore(currentStreak)
-		currentStreak = 0
-		showStreak()
+		endStreak()
 
-func _ready():
-	pass # Replace with function body.
+func _on_Player_playerDied():
+	endStreak()
