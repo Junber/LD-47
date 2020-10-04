@@ -47,9 +47,9 @@ func changeHealth(amount):
 
 func kill():
 	if !dead:
-		.kill()
 		$"../ArenaCamera".make_current()
 		emit_signal("playerDied")
+		.kill()
 
 func getHitBy(collider, _collision):
 	collider.collideWithPlayer(self)

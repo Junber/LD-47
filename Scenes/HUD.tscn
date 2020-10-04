@@ -6,11 +6,11 @@
 [ext_resource path="res://Resources/Graphics/CombobarInside.png" type="Texture" id=4]
 [ext_resource path="res://Resources/Fonts/Jacmax.ttf" type="DynamicFontData" id=5]
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="DynamicFont" id=1]
 size = 80
 font_data = ExtResource( 5 )
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="DynamicFont" id=2]
 size = 30
 font_data = ExtResource( 5 )
 
@@ -26,6 +26,7 @@ script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+comboTimeIncreasePerKill = 10
 
 [node name="ScoreLabel" type="Label" parent="ScoreSystem"]
 margin_left = 50.0
@@ -33,7 +34,7 @@ margin_top = 50.0
 margin_right = 94.0
 margin_bottom = 296.0
 rect_pivot_offset = Vector2( 22, 123 )
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 1, 0.0823529, 0, 1 )
 text = "0
 
@@ -62,10 +63,10 @@ __meta__ = {
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 10.1022
-margin_right = 46.1022
+margin_left = 10.0
+margin_right = 46.0
 margin_bottom = 1.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 1, 0, 0, 1 )
 text = "x 3"
 align = 1
@@ -74,14 +75,19 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="NormalStreakPosition" type="Position2D" parent="ScoreSystem/ComboBar"]
+position = Vector2( 110, 0 )
+
+[node name="BigStreakPosition" type="Position2D" parent="ScoreSystem/ComboBar"]
+position = Vector2( 125, 15 )
+
 [node name="ScoreLabelEffectTimer" type="Timer" parent="ScoreSystem"]
 wait_time = 0.2
 one_shot = true
 
-[node name="BigScorePosition" type="Position2D" parent="ScoreSystem"]
-position = Vector2( 72, 100 )
-scale = Vector2( 1, 1 )
-
 [node name="NormalScorePosition" type="Position2D" parent="ScoreSystem"]
 position = Vector2( 50, 50 )
+
+[node name="BigScorePosition" type="Position2D" parent="ScoreSystem"]
+position = Vector2( 72, 130 )
 [connection signal="timeout" from="ScoreSystem/ScoreLabelEffectTimer" to="ScoreSystem" method="_on_ScoreLabelEffectTimer_timeout"]
