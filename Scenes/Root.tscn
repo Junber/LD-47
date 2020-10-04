@@ -43,7 +43,6 @@ texture = ExtResource( 3 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 1019.09, 725.787 )
-rotationIncrease = 100
 
 [node name="Border" type="StaticBody2D" parent="."]
 scale = Vector2( 2, 2 )
