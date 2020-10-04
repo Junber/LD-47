@@ -13,6 +13,7 @@ z_index = 2
 collision_layer = 1
 collision_mask = 4
 script = ExtResource( 4 )
+health = 240
 
 [node name="DeadSprite" parent="." index="0"]
 texture = ExtResource( 5 )

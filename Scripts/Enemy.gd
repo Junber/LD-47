@@ -15,11 +15,14 @@ func collideWithPlayer(collider):
 		
 	var damageToOther = damageDealt()
 	if !protected(collider):
+		var damageToSelf = collider.damageDealt()
 		bounceOffOfIceScater(collider)
-		changeHealth(collider.damageDealt())
+		changeHealth(damageToSelf)
 		if dead:
 			damageToOther = 0
 			emit_signal("enemyKilledByPlayer")
+		elif damageToSelf < -60:
+			damageToOther = 0
 		else:
 			emit_signal("enemyNotKilledByPlayer")
 	else:
