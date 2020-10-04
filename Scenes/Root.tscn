@@ -70,10 +70,6 @@ one_shot = true
 
 [node name="HUD" type="CanvasLayer" parent="."]
 
-[node name="OptionsScreen" parent="HUD" instance=ExtResource( 15 )]
-pause_mode = 2
-visible = false
-
 [node name="EnemyIndicators" type="Node2D" parent="HUD"]
 script = ExtResource( 2 )
 
@@ -135,6 +131,14 @@ __meta__ = {
 [node name="ScoreLabelEffectTimer" type="Timer" parent="HUD/ScoreSystem"]
 wait_time = 0.2
 one_shot = true
+
+[node name="OptionsScreenLayer" type="CanvasLayer" parent="."]
+pause_mode = 2
+layer = 2
+
+[node name="OptionsScreen" parent="OptionsScreenLayer" instance=ExtResource( 15 )]
+pause_mode = 2
+visible = false
 
 [node name="BooPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 11 )
