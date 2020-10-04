@@ -7,6 +7,10 @@ onready var boostProgressBar = $BoostCooldownProgessBar
 
 var hasShield = false
 export var shieldDuration = 5.0
+export var slowDownDuration = 5.0
+
+var bulletScene = load("res://Scenes/Bullet.tscn")
+var bulletsLeft = 0
 
 func getShield():
 	hasShield = true;
@@ -17,8 +21,24 @@ func getShield():
 	
 func protected(_collider):
 	return hasShield
+	
+func slowTime():
+	if $SlowdownTimer.is_stopped():
+		timeMultiplier = 5
+		Engine.time_scale /= timeMultiplier
+		
+		var audioEffect = AudioEffectPitchShift.new()
+		audioEffect.pitch_scale = 0.5
+		AudioServer.add_bus_effect(AudioServer.get_bus_index("Master"), audioEffect, 0)
+		$SlowdownTimer.start(slowDownDuration / timeMultiplier)
+	else:
+		$SlowdownTimer.start($SlowdownTimer.time_left + slowDownDuration / timeMultiplier)
 
-var bulletScene = load("res://Scenes/Bullet.tscn")
+func _on_SlowdownTimer_timeout():
+	AudioServer.remove_bus_effect(AudioServer.get_bus_index("Master"),  0)
+	
+	Engine.time_scale *= timeMultiplier
+	timeMultiplier = 1
 
 var bulletsLeft = 0
 func changeHealth(amount):
@@ -77,6 +97,8 @@ func shoot():
 	bulletsLeft -= 1
 
 func _process(delta):
+	delta *= timeMultiplier
+	
 	boostProgressBar.value = boostTimer.time_left / boostTimer.wait_time
 	if !dead and Input.is_action_just_pressed("boost"):
 		if boostTimer.is_stopped():

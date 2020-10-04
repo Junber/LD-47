@@ -12,6 +12,8 @@ const maxRotationSpeed = 600
 
 export var rotationIncrease = 50
 
+var timeMultiplier = 1
+
 var velocity = Vector2(0,0)
 var rotationSpeed = 1
 var dead = false
@@ -69,6 +71,7 @@ func setSpriteRotation(rotation):
 	aliveSprite.rotate(rotation)
 
 func _process(delta):
+	delta *= timeMultiplier
 	velocity += getDirection() * acceleration * delta
 	velocity *= pow(0.9, delta)
 	velocity -= velocity.normalized() * 100 * delta
