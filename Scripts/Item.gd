@@ -2,7 +2,7 @@ extends KinematicBody2D
 
 var velocity = Vector2(0,0)
 
-func getHitBy(collider, _collision):
+func getHitBy(_collider, _collision):
 	pass
 
 func getUsed():

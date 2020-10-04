@@ -6,6 +6,8 @@ signal enemyDied
 signal enemyKilledByPlayer
 signal enemyNotKilledByPlayer
 
+export (PackedScene) var itemScene
+
 func getHitBy(collider, _collision):
 	collider.collideWithEnemy(self)
 
@@ -47,8 +49,8 @@ func collideWithEnemy(collider):
 
 func checkDrop():
 	if randf()<0.5:
-		var newDrop = load("res://Scenes/HealingPotion.tscn").instance()
-		newDrop.position=self.position
+		var newDrop = itemScene.instance()
+		newDrop.position = self.position
 		var DegreesInRadians = 0.34
 		var newVelocity = (self.velocity * 0.5).rotated(randf()*DegreesInRadians-(DegreesInRadians/2))
 		newDrop.velocity += newVelocity

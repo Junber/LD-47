@@ -45,10 +45,6 @@ func bounceOffOfIceScater(collider, velocityLength):
 func getDirection():
 	return Vector2(0,0)
 
-func boost():
-	velocity = getDirection() * max(velocity.length() * 1.5, 3000)
-	rotationSpeed = min(rotationSpeed + 100, maxRotationSpeed)
-
 func damageDealt():
 	return max(-(rotationSpeed + velocity.length() / 2) * 0.1, -80)
 
