@@ -57,7 +57,6 @@ func kill():
 		set_collision_mask_bit(1, false)
 		set_collision_layer_bit(1, false)
 		z_index -= 1
-		get_node("../HUD/ScoreLabel").increaseScore()
 		emit_signal("enemyDied")
 
 func getDirection():
