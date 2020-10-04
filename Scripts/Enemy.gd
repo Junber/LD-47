@@ -28,7 +28,7 @@ func collideWithPlayer(collider):
 			emit_signal("enemyNotKilledByPlayer")
 	else:
 		emit_signal("enemyNotKilledByPlayer")
-	if !collider.protected(collider):
+	if !collider.protected(self):
 		collider.bounceOffOfIceScater(self, velocityLength)
 		collider.changeHealth(damageToOther)
 
@@ -41,8 +41,8 @@ func collideWithEnemy(collider):
 	if !protected(collider):
 		bounceOffOfIceScater(collider, velocityLength)
 		changeHealth(collider.damageDealt())
-	if !collider.protected(collider, velocityLength):
-		collider.bounceOffOfIceScater(self)
+	if !collider.protected(self):
+		collider.bounceOffOfIceScater(self, velocityLength)
 		collider.changeHealth(damageToOther)
 
 func checkDrop():
