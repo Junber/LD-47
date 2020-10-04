@@ -5,6 +5,19 @@ signal playerDied
 onready var boostTimer = $BoostCooldownTimer
 onready var boostProgressBar = $BoostCooldownProgessBar
 
+var hasShield = false
+export var shieldDuration = 5.0
+
+func getShield():
+	hasShield = true;
+	$Shield.visible = true
+	yield(get_tree().create_timer(shieldDuration), "timeout")
+	hasShield = false;
+	$Shield.visible = false
+	
+func protected(_collider):
+	return hasShield
+
 var bulletScene = load("res://Scenes/Bullet.tscn")
 
 var bulletsLeft = 0
@@ -19,7 +32,7 @@ func getHitBy(collider, _collision):
 	collider.collideWithPlayer(self)
 
 func collideWithEnemy(collider):
-	collider.collideWithPlayer(self)
+	collider.collideWithPlayer(self)	
 
 func getDirection():
 	if dead:
