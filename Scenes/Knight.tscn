@@ -9,6 +9,7 @@
 
 [node name="Knight" instance=ExtResource( 4 )]
 script = ExtResource( 1 )
+health = 80
 itemScene = ExtResource( 6 )
 
 [node name="ShieldSprite" type="Sprite" parent="." index="0"]

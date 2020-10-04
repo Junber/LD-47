@@ -152,6 +152,7 @@ pitchVariation = 0.5
 
 [node name="KillSlowdownTimer" type="Timer" parent="."]
 wait_time = 0.03
+one_shot = true
 script = ExtResource( 5 )
 [connection signal="playerDied" from="Player" to="EnemySpawnPath" method="_on_Player_playerDied"]
 [connection signal="playerDied" from="Player" to="HUD/ScoreSystem" method="_on_Player_playerDied"]

@@ -48,7 +48,7 @@ func collideWithEnemy(collider):
 		collider.changeHealth(damageToOther)
 
 func checkDrop():
-	if randf()<0.5:
+	if randf() < 0.5:
 		var newDrop = itemScene.instance()
 		newDrop.position = self.position
 		var DegreesInRadians = 0.34

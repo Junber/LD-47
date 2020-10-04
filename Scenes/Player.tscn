@@ -74,3 +74,8 @@ __meta__ = {
 
 [node name="ScreenshakeTimer" type="Timer" parent="PlayerCamera" index="0"]
 wait_time = 0.1
+
+[node name="SlowdownTimer" type="Timer" parent="." index="10"]
+wait_time = 10.0
+one_shot = true
+[connection signal="timeout" from="SlowdownTimer" to="." method="_on_SlowdownTimer_timeout"]
