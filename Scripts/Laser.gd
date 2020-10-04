@@ -24,11 +24,17 @@ func _physics_process(delta):
 	var normal = cast_to.rotated(rotation).normalized()
 	var angle = abs(offset.angle_to(normal))
 	$LaserSoundPlayer.pitch_scale = clamp(angle, 0.1, 3)
+	$LaserStartupPlayer.pitch_scale = clamp(angle, 0.1, 3)
 
 func _on_StartupTimer_timeout():
 	damaging = true
 	$LaserBeam.default_color = Color("ffffff")
 	$Sparks.emitting = true
+	$LaserSoundPlayer.play()
+	$LaserStartupPlayer.stop()
 
 func _on_LaserSoundPlayer_finished():
 	$LaserSoundPlayer.play()
+
+func _on_LaserStartupPlayer_finished():
+	$LaserStartupPlayer.play()
