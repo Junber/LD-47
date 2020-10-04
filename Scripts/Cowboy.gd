@@ -10,5 +10,10 @@ func _on_GunTimer_timeout():
 		bullet.position += bullet.velocity.normalized() * 70
 		get_parent().add_child(bullet)
 		$GunShotPlayer.play()
+		$GunCockingTimer.start()
 	else:
 		$GunTimer.stop()
+
+
+func _on_GunCockingTimer_timeout():
+	$GunCockingPlayer.play()

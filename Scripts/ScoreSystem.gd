@@ -13,7 +13,7 @@ func enemyDied():
 	currentStreak += 1
 	showStreak()
 
-func increaseScore(amount):
+func increaseScore(_amount):
 	score += round(pow(currentStreak, 1.5)) * 100
 	$ScoreLabel.text = str(score)
 
