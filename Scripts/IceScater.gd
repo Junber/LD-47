@@ -6,6 +6,8 @@ onready var aliveSprite = $AliveSprite
 onready var particleEmitter = $BloodParticles
 export var acceleration = 1000
 
+export var health = 160
+
 const maxRotationSpeed = 1000
 
 var velocity = Vector2(0,0)
@@ -13,7 +15,8 @@ var rotationSpeed = 1
 var dead = false
 
 func _ready():
-	pass
+	healthBar.max_value = health
+	healthBar.value = health
 	
 func protected(_collider):
 	return false
@@ -45,7 +48,7 @@ func boost():
 	rotationSpeed = min(rotationSpeed + 100, maxRotationSpeed)
 
 func damageDealt():
-	return -(rotationSpeed + velocity.length() / 2) * 0.1
+	return max(-(rotationSpeed + velocity.length() / 2) * 0.1, -80)
 
 func kill():
 	if !dead:
