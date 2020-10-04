@@ -11,8 +11,11 @@ func kill():
 		$"../ArenaCamera".make_current()
 		emit_signal("playerDied")
 
-func collideWithIceScater(collider):
-	collider.collideWithIceScater(self)
+func getHitBy(collider, _collision):
+	collider.collideWithPlayer(self)
+
+func collideWithEnemy(collider):
+	collider.collideWithPlayer(self)
 
 func collideWithHealingPotion(collider):
 	self.changeHealth(collider.healingAmount)	

@@ -5,4 +5,6 @@
 
 [node name="Enemy" instance=ExtResource( 2 )]
 scale = Vector2( 2, 2 )
+z_index = 1
+collision_mask = 7
 script = ExtResource( 1 )

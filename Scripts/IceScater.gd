@@ -25,6 +25,10 @@ func collideWithWall(_collider, collision):
 func collideWithLaser(collider, damage):
 	if !protected(collider):
 		changeHealth(damage)
+
+func collideWithBullet(collider):
+	if !protected(collider):
+		changeHealth(collider.damage)
 	
 func collideWithIceScater(_collider):
 	pass
@@ -32,9 +36,6 @@ func collideWithIceScater(_collider):
 func bounceOffOfIceScater(collider):
 	velocity = (position - collider.position).normalized() * velocity.length() / 2
 	rotationSpeed /= 2
-
-func getHitBy(collider, _collision):
-	collider.collideWithIceScater(self)
 
 func getDirection():
 	return Vector2(0,0)

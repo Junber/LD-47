@@ -6,7 +6,10 @@ signal enemyDied
 signal enemyKilledByPlayer
 signal enemyNotKilledByPlayer
 
-func collideWithIceScater(collider):
+func getHitBy(collider, _collision):
+	collider.collideWithEnemy(self)
+
+func collideWithPlayer(collider):
 	if dead or collider.dead:
 		return
 		
@@ -21,8 +24,21 @@ func collideWithIceScater(collider):
 			emit_signal("enemyNotKilledByPlayer")
 	else:
 		emit_signal("enemyNotKilledByPlayer")
-	collider.bounceOffOfIceScater(self)
-	collider.changeHealth(damageToOther)
+	if !collider.protected(collider):
+		collider.bounceOffOfIceScater(self)
+		collider.changeHealth(damageToOther)
+
+func collideWithEnemy(collider):
+	if dead or collider.dead:
+		return
+		
+	var damageToOther = damageDealt()
+	if !protected(collider):
+		bounceOffOfIceScater(collider)
+		changeHealth(collider.damageDealt())
+	if !collider.protected(collider):
+		collider.bounceOffOfIceScater(self)
+		collider.changeHealth(damageToOther)
 
 func checkDrop():
 	if randf()<0.5:
@@ -38,7 +54,9 @@ func kill():
 		.kill()
 		checkDrop()
 		set_collision_mask_bit(0, false)
+		set_collision_mask_bit(1, false)
 		set_collision_layer_bit(1, false)
+		z_index -= 1
 		get_node("../HUD/ScoreLabel").increaseScore()
 		emit_signal("enemyDied")
 
