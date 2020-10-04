@@ -59,14 +59,21 @@ damage = -600
 [node name="LaserBeam" type="Line2D" parent="Laser" index="0"]
 points = PoolVector2Array( 0, 0, 0, 100 )
 width = 20.0
-default_color = Color( 1, 1, 1, 1 )
+default_color = Color( 1, 1, 0, 0.352941 )
 texture = ExtResource( 6 )
 texture_mode = 1
 
 [node name="Sparks" type="Particles2D" parent="Laser" index="1"]
 scale = Vector2( 1.02952, 1.02117 )
+emitting = false
 amount = 100
 lifetime = 0.2
 randomness = 0.13
 process_material = SubResource( 5 )
 texture = ExtResource( 4 )
+
+[node name="StartupTimer" type="Timer" parent="Laser" index="2"]
+wait_time = 3.0
+one_shot = true
+autostart = true
+[connection signal="timeout" from="Laser/StartupTimer" to="Laser" method="_on_StartupTimer_timeout"]
