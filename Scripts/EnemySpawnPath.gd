@@ -30,6 +30,8 @@ func spawnEnemy():
 	
 	get_parent().call_deferred("add_child", enemy)
 	enemy.connect("enemyDied", $"../WowPlayer", "playSfx")
+	enemy.connect("enemyDied", $"../KillSlowdownTimer", "slowDown")
+	enemy.connect("enemyDied", $"../Player", "enemyDied")
 	enemy.connect("enemyDidNotDie", $"../BooPlayer", "playSfx")
 	emit_signal("enemySpawned", enemy)
 

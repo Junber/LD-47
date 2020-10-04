@@ -1,9 +1,10 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scripts/EnemyIndicators.gd" type="Script" id=2]
 [ext_resource path="res://Resources/Graphics/Background.png" type="Texture" id=3]
 [ext_resource path="res://Scripts/EnemySpawnPath.gd" type="Script" id=4]
+[ext_resource path="res://Scripts/KillSlowdownTimer.gd" type="Script" id=5]
 [ext_resource path="res://Scripts/ScoreLabel.gd" type="Script" id=8]
 [ext_resource path="res://Resources/Fonts/Jacmax.ttf" type="DynamicFontData" id=9]
 [ext_resource path="res://Resources/Sounds/boo.wav" type="AudioStream" id=11]
@@ -91,6 +92,11 @@ pitchVariation = 0.5
 stream = ExtResource( 12 )
 script = ExtResource( 13 )
 pitchVariation = 0.5
+
+[node name="KillSlowdownTimer" type="Timer" parent="."]
+wait_time = 0.03
+script = ExtResource( 5 )
 [connection signal="playerDied" from="Player" to="EnemySpawnPath" method="_on_Player_playerDied"]
 [connection signal="enemySpawned" from="EnemySpawnPath" to="HUD/EnemyIndicators" method="_on_EnemySpawnPath_enemySpawned"]
 [connection signal="timeout" from="EnemySpawnPath/EnemySpawnTimer" to="EnemySpawnPath" method="_on_EnemySpawnTimer_timeout"]
+[connection signal="timeout" from="KillSlowdownTimer" to="KillSlowdownTimer" method="_on_KillSlowdownTimer_timeout"]

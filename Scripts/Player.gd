@@ -24,6 +24,10 @@ func getDirection():
 		
 		return Vector2(x,y)
 
+func enemyDied():
+	$PlayerCamera.zoom = $PlayerCamera.zoom * 0.6
+	#$PlayerCamera.startScreenshake()
+
 func _process(delta):
 	boostProgressBar.value = boostTimer.time_left / boostTimer.wait_time
 	if Input.is_action_just_pressed("boost"):
@@ -32,7 +36,7 @@ func _process(delta):
 			boost()
 	
 	var zoomSpeed = 1.0
-	var newZoom = min(max(velocity.length(), 500) / 1000, 2)
+	var newZoom = min(max(velocity.length(), 1000) / 1000, 2)
 	var zoomDifference = newZoom - $PlayerCamera.zoom.x
 	if abs(zoomDifference) > zoomSpeed*delta:
 		$PlayerCamera.zoom = $PlayerCamera.zoom + zoomSpeed*delta * sign(zoomDifference) * Vector2(1,1)
