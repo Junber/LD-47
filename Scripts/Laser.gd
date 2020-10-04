@@ -18,9 +18,9 @@ func _physics_process(delta):
 	get_collider().collideWithLaser(get_parent(), damage * delta)
 	
 	var offset = global_position - $"../../Player".global_position
-	var normal = (cast_to - position).normalized()
-	var dist = (offset - (offset.dot(normal) * normal)).length()
-	$LaserSoundPlayer.pitch_scale = dist / 1000
+	var normal = cast_to.rotated(rotation).normalized()
+	var angle = abs(offset.angle_to(normal))
+	$LaserSoundPlayer.pitch_scale = clamp(angle, 0.1, 3)
 
 
 func _on_LaserSoundPlayer_finished():

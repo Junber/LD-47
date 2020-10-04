@@ -75,4 +75,6 @@ texture = ExtResource( 4 )
 [node name="LaserSoundPlayer" type="AudioStreamPlayer2D" parent="Laser" index="2"]
 stream = ExtResource( 8 )
 autoplay = true
+max_distance = 4500.0
+bus = "SoundEffects"
 [connection signal="finished" from="Laser/LaserSoundPlayer" to="Laser" method="_on_LaserSoundPlayer_finished"]
