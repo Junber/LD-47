@@ -1,22 +1,30 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Scripts/Knight.gd" type="Script" id=1]
 [ext_resource path="res://Resources/Graphics/KnightDead.png" type="Texture" id=2]
-[ext_resource path="res://Resources/Graphics/Knight.png" type="Texture" id=3]
+[ext_resource path="res://Resources/Graphics/Characters/Knight.png" type="Texture" id=3]
 [ext_resource path="res://Scenes/Enemy.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Resources/Graphics/Shield.png" type="Texture" id=5]
 [ext_resource path="res://Scenes/Shield.tscn" type="PackedScene" id=6]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 24.9228
 
 [node name="Knight" instance=ExtResource( 4 )]
 script = ExtResource( 1 )
 health = 80
 itemScene = ExtResource( 6 )
 
-[node name="ShieldSprite" type="Sprite" parent="." index="0"]
-texture = ExtResource( 5 )
-
-[node name="DeadSprite" parent="." index="1"]
+[node name="DeadSprite" parent="." index="0"]
 texture = ExtResource( 2 )
 
-[node name="AliveSprite" parent="." index="2"]
+[node name="AliveSprite" parent="." index="1"]
+scale = Vector2( 0.12, 0.12 )
 texture = ExtResource( 3 )
+
+[node name="CollisionShape2D" parent="." index="2"]
+shape = SubResource( 1 )
+
+[node name="ShieldSprite" type="Sprite" parent="." index="3"]
+scale = Vector2( 1.1, 1.1 )
+texture = ExtResource( 5 )
