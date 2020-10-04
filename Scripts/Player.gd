@@ -22,6 +22,11 @@ var bulletScene = load("res://Scenes/Bullet.tscn")
 
 var bulletsLeft = 0
 
+func changeHealth(amount):
+	if amount < 0:
+		$PlayerCamera.startScreenshake()
+	.changeHealth(amount)
+
 func kill():
 	if !dead:
 		.kill()
@@ -47,7 +52,6 @@ func getDirection():
 
 func enemyDied():
 	$PlayerCamera.zoom = $PlayerCamera.zoom * 0.6
-	#$PlayerCamera.startScreenshake()
 
 func getSpecialDirection():
 	var direction = getDirection()
