@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Scenes/Enemy.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Resources/Graphics/Cyborg.png" type="Texture" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://Resources/Graphics/LaserNew.png" type="Texture" id=6]
 [ext_resource path="res://Cyborg.gd" type="Script" id=7]
 [ext_resource path="res://Resources/Sounds/laser.wav" type="AudioStream" id=8]
+[ext_resource path="res://Resources/Sounds/laserStartingUp.wav" type="AudioStream" id=9]
 
 [sub_resource type="Curve" id=1]
 min_value = -360.0
@@ -60,7 +61,7 @@ damage = -600
 [node name="LaserBeam" type="Line2D" parent="Laser" index="0"]
 points = PoolVector2Array( 0, 0, 0, 100 )
 width = 20.0
-default_color = Color( 1, 1, 0, 0.352941 )
+default_color = Color( 1, 1, 0, 0.235294 )
 texture = ExtResource( 6 )
 texture_mode = 1
 
@@ -73,15 +74,24 @@ randomness = 0.13
 process_material = SubResource( 5 )
 texture = ExtResource( 4 )
 
-[node name="LaserSoundPlayer" type="AudioStreamPlayer2D" parent="Laser" index="2"]
-stream = ExtResource( 8 )
-autoplay = true
-max_distance = 4500.0
-bus = "SoundEffects"
-[connection signal="finished" from="Laser/LaserSoundPlayer" to="Laser" method="_on_LaserSoundPlayer_finished"]
-
 [node name="StartupTimer" type="Timer" parent="Laser" index="2"]
 wait_time = 3.0
 one_shot = true
 autostart = true
+
+[node name="LaserStartupPlayer" type="AudioStreamPlayer2D" parent="Laser" index="3"]
+stream = ExtResource( 9 )
+autoplay = true
+max_distance = 4500.0
+bus = "SoundEffects"
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="LaserSoundPlayer" type="AudioStreamPlayer2D" parent="Laser" index="4"]
+stream = ExtResource( 8 )
+max_distance = 4500.0
+bus = "SoundEffects"
 [connection signal="timeout" from="Laser/StartupTimer" to="Laser" method="_on_StartupTimer_timeout"]
+[connection signal="finished" from="Laser/LaserStartupPlayer" to="Laser" method="_on_LaserStartupPlayer_finished"]
+[connection signal="finished" from="Laser/LaserSoundPlayer" to="Laser" method="_on_LaserSoundPlayer_finished"]
