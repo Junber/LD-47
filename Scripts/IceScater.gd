@@ -52,10 +52,11 @@ func damageDealt():
 
 func kill():
 	if !dead:
-		deadSprite.visible = true
-		aliveSprite.visible = false
 		particleEmitter.emitting = true
 		dead = true
+		yield(get_tree().create_timer(0.04), "timeout")
+		deadSprite.visible = true
+		aliveSprite.visible = false
 
 func changeHealth(amount):
 	healthBar.value += amount
