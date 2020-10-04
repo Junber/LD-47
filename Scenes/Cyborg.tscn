@@ -1,44 +1,10 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Scenes/Enemy.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Resources/Graphics/Cyborg.png" type="Texture" id=2]
 [ext_resource path="res://Resources/Graphics/CyborgDead.png" type="Texture" id=3]
-[ext_resource path="res://Resources/Graphics/LaserSparks.png" type="Texture" id=4]
-[ext_resource path="res://Scripts/Laser.gd" type="Script" id=5]
-[ext_resource path="res://Resources/Graphics/LaserNew.png" type="Texture" id=6]
+[ext_resource path="res://Scenes/Laser.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scripts/Cyborg.gd" type="Script" id=7]
-[ext_resource path="res://Resources/Sounds/laser.wav" type="AudioStream" id=8]
-[ext_resource path="res://Resources/Sounds/laserStartingUp.wav" type="AudioStream" id=9]
-
-
-[sub_resource type="Curve" id=1]
-min_value = -360.0
-max_value = 360.0
-_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
-
-[sub_resource type="CurveTexture" id=2]
-curve = SubResource( 1 )
-
-[sub_resource type="Gradient" id=3]
-colors = PoolColorArray( 0.858824, 0.870588, 0.419608, 1, 0.952941, 0.611765, 0.0823529, 0.572549 )
-
-[sub_resource type="GradientTexture" id=4]
-gradient = SubResource( 3 )
-
-[sub_resource type="ParticlesMaterial" id=5]
-trail_divisor = 7
-flag_disable_z = true
-direction = Vector3( 0, -1, 0 )
-spread = 33.38
-gravity = Vector3( 0, 0, 0 )
-initial_velocity = 454.54
-initial_velocity_random = 0.49
-angular_velocity_curve = SubResource( 2 )
-orbit_velocity = 0.0
-orbit_velocity_random = 0.0
-scale = 0.65
-scale_random = 0.13
-color_ramp = SubResource( 4 )
 
 [node name="Cyborg" instance=ExtResource( 1 )]
 position = Vector2( 348.998, 159.75 )
@@ -52,47 +18,4 @@ texture = ExtResource( 3 )
 position = Vector2( -0.353546, 0 )
 texture = ExtResource( 2 )
 
-[node name="Laser" type="RayCast2D" parent="." index="5"]
-enabled = true
-cast_to = Vector2( 0, 10000 )
-collision_mask = 7
-script = ExtResource( 5 )
-damage = -600
-
-[node name="LaserBeam" type="Line2D" parent="Laser" index="0"]
-points = PoolVector2Array( 0, 0, 0, 100 )
-width = 20.0
-default_color = Color( 1, 1, 0, 0.235294 )
-texture = ExtResource( 6 )
-texture_mode = 1
-
-[node name="Sparks" type="Particles2D" parent="Laser" index="1"]
-scale = Vector2( 1.02952, 1.02117 )
-emitting = false
-amount = 100
-lifetime = 0.2
-randomness = 0.13
-process_material = SubResource( 5 )
-texture = ExtResource( 4 )
-
-[node name="StartupTimer" type="Timer" parent="Laser" index="2"]
-wait_time = 3.0
-one_shot = true
-autostart = true
-
-[node name="LaserStartupPlayer" type="AudioStreamPlayer2D" parent="Laser" index="3"]
-stream = ExtResource( 9 )
-autoplay = true
-max_distance = 4500.0
-bus = "SoundEffects"
-__meta__ = {
-"_editor_description_": ""
-}
-
-[node name="LaserSoundPlayer" type="AudioStreamPlayer2D" parent="Laser" index="4"]
-stream = ExtResource( 8 )
-max_distance = 4500.0
-bus = "SoundEffects"
-[connection signal="timeout" from="Laser/StartupTimer" to="Laser" method="_on_StartupTimer_timeout"]
-[connection signal="finished" from="Laser/LaserStartupPlayer" to="Laser" method="_on_LaserStartupPlayer_finished"]
-[connection signal="finished" from="Laser/LaserSoundPlayer" to="Laser" method="_on_LaserSoundPlayer_finished"]
+[node name="Laser" parent="." index="5" instance=ExtResource( 4 )]
