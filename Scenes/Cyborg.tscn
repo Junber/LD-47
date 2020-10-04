@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Scenes/Enemy.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Resources/Graphics/Cyborg.png" type="Texture" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://Scripts/Laser.gd" type="Script" id=5]
 [ext_resource path="res://Resources/Graphics/LaserNew.png" type="Texture" id=6]
 [ext_resource path="res://Cyborg.gd" type="Script" id=7]
+[ext_resource path="res://Resources/Sounds/laser.wav" type="AudioStream" id=8]
 
 [sub_resource type="Curve" id=1]
 min_value = -360.0
@@ -71,6 +72,13 @@ lifetime = 0.2
 randomness = 0.13
 process_material = SubResource( 5 )
 texture = ExtResource( 4 )
+
+[node name="LaserSoundPlayer" type="AudioStreamPlayer2D" parent="Laser" index="2"]
+stream = ExtResource( 8 )
+autoplay = true
+max_distance = 4500.0
+bus = "SoundEffects"
+[connection signal="finished" from="Laser/LaserSoundPlayer" to="Laser" method="_on_LaserSoundPlayer_finished"]
 
 [node name="StartupTimer" type="Timer" parent="Laser" index="2"]
 wait_time = 3.0

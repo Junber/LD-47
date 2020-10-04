@@ -19,8 +19,16 @@ func _physics_process(delta):
 		laserSparks.position = laserEndPoint
 		if damaging:
 			get_collider().collideWithLaser(get_parent(), damage * delta)
+	
+	var offset = global_position - $"../../Player".global_position
+	var normal = cast_to.rotated(rotation).normalized()
+	var angle = abs(offset.angle_to(normal))
+	$LaserSoundPlayer.pitch_scale = clamp(angle, 0.1, 3)
 
 func _on_StartupTimer_timeout():
 	damaging = true
 	$LaserBeam.default_color = Color("ffffff")
 	$Sparks.emitting = true
+
+func _on_LaserSoundPlayer_finished():
+	$LaserSoundPlayer.play()
