@@ -84,6 +84,12 @@ func getSpecialDirection():
 func boost():
 	velocity = getSpecialDirection() * max(velocity.length() * 1.5, 3000)
 	rotationSpeed = min(rotationSpeed + 100, maxRotationSpeed)
+	
+func setBulletsLeft(amount):
+	bulletsLeft = amount
+	$"../HUD/BulletsLeftLabel".text = str(bulletsLeft)
+	$"../HUD/BulletsLeftLabel".visible = bulletsLeft > 0
+	$"../HUD/BulletsLeftIcon".visible = bulletsLeft > 0
 
 func shoot():
 	var bullet = bulletScene.instance()
@@ -93,7 +99,7 @@ func shoot():
 	bullet.damage = -200
 	get_parent().add_child(bullet)
 	$GunShotPlayer.play()
-	bulletsLeft -= 1
+	setBulletsLeft(bulletsLeft - 1)
 
 func _process(delta):
 	delta *= timeMultiplier

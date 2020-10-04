@@ -9,13 +9,18 @@ func getUsed():
 	queue_free()
 
 func collideWithWall(_collider, collision):
-	velocity = velocity.bounce(collision.normal) / 2
+	velocity = velocity.bounce(collision.normal)
+
+func collideWithPlayer(collider):
+	getHitBy(collider, null)
 
 func _process(delta):
 	velocity *= pow(0.9, delta)
 	velocity -= velocity.normalized() * 100 * delta
-	#warning-ignore:return_value_discarded
-	move_and_collide(velocity * delta)
+	
+	var collision = move_and_collide(velocity * delta)
+	if collision:
+		collision.collider.getHitBy(self, collision)
 
 #this only allows the potion to be picked up when it almost stopped
 #which is a cheap workaround/feature for avoiding it gettng used when spawned

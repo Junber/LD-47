@@ -1,21 +1,23 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Scripts/ScoreSystem.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/EnemyIndicators.gd" type="Script" id=2]
 [ext_resource path="res://Resources/Graphics/CombobarOutline.png" type="Texture" id=3]
 [ext_resource path="res://Resources/Graphics/CombobarInside.png" type="Texture" id=4]
 [ext_resource path="res://Resources/Fonts/Jacmax.ttf" type="DynamicFontData" id=5]
-[ext_resource path="res://Resources/Graphics/Blood.png" type="Texture" id=6]
+[ext_resource path="res://Resources/Graphics/UIBullet.png" type="Texture" id=6]
+[ext_resource path="res://Resources/Graphics/Blood.png" type="Texture" id=7]
+[ext_resource path="res://Scripts/HUD.gd" type="Script" id=8]
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="DynamicFont" id=2]
 size = 80
 font_data = ExtResource( 5 )
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="DynamicFont" id=3]
 size = 30
 font_data = ExtResource( 5 )
 
-[sub_resource type="ParticlesMaterial" id=3]
+[sub_resource type="ParticlesMaterial" id=4]
 emission_shape = 2
 emission_box_extents = Vector3( 1, 1, 1 )
 flag_disable_z = true
@@ -28,6 +30,7 @@ orbit_velocity_random = 0.0
 scale = 0.19
 
 [node name="HUD" type="CanvasLayer"]
+script = ExtResource( 8 )
 
 [node name="EnemyIndicators" type="Node2D" parent="."]
 script = ExtResource( 2 )
@@ -47,7 +50,7 @@ margin_top = 50.0
 margin_right = 94.0
 margin_bottom = 296.0
 rect_pivot_offset = Vector2( 22, 123 )
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 1, 0.0823529, 0, 1 )
 text = "0
 
@@ -79,7 +82,7 @@ anchor_bottom = 1.0
 margin_left = 10.0
 margin_right = 46.0
 margin_bottom = 1.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 3 )
 custom_colors/font_color = Color( 1, 0, 0, 1 )
 text = "x 3"
 align = 1
@@ -92,8 +95,8 @@ __meta__ = {
 modulate = Color( 1, 0, 0, 1 )
 z_index = 1
 amount = 20
-process_material = SubResource( 3 )
-texture = ExtResource( 6 )
+process_material = SubResource( 4 )
+texture = ExtResource( 7 )
 
 [node name="NormalStreakPosition" type="Position2D" parent="ScoreSystem/ComboBar"]
 position = Vector2( 110, 0 )
@@ -105,12 +108,33 @@ position = Vector2( 125, 15 )
 wait_time = 0.2
 one_shot = true
 
-[node name="BigScorePosition" type="Position2D" parent="ScoreSystem"]
-position = Vector2( 72, 100 )
-
 [node name="NormalScorePosition" type="Position2D" parent="ScoreSystem"]
 position = Vector2( 50, 50 )
 
 [node name="BigScorePosition" type="Position2D" parent="ScoreSystem"]
 position = Vector2( 72, 130 )
+
+[node name="BulletsLeftIcon" type="Sprite" parent="."]
+visible = false
+position = Vector2( 1779.32, 84.2887 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 6 )
+
+[node name="BulletsLeftLabel" type="Label" parent="."]
+visible = false
+margin_left = 1830.0
+margin_top = 50.0
+margin_right = 1874.0
+margin_bottom = 296.0
+rect_pivot_offset = Vector2( 22, 123 )
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 1, 0.0823529, 0, 1 )
+text = "0
+
+"
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+[connection signal="enemy_spawned" from="." to="EnemyIndicators" method="_on_HUD_enemy_spawned"]
 [connection signal="timeout" from="ScoreSystem/ScoreLabelEffectTimer" to="ScoreSystem" method="_on_ScoreLabelEffectTimer_timeout"]

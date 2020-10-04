@@ -17,9 +17,10 @@ func collideWithPlayer(collider):
 		
 	var damageToOther = damageDealt()
 	var velocityLength = (velocity.length() + collider.velocity.length()) / 2
+	
+	bounceOffOfIceScater(collider, velocityLength)
 	if !protected(collider):
 		var damageToSelf = collider.damageDealt()
-		bounceOffOfIceScater(collider, velocityLength)
 		changeHealth(damageToSelf)
 		if dead:
 			damageToOther = 0
@@ -30,8 +31,9 @@ func collideWithPlayer(collider):
 			emit_signal("enemyNotKilledByPlayer")
 	else:
 		emit_signal("enemyNotKilledByPlayer")
+	
+	collider.bounceOffOfIceScater(self, velocityLength)
 	if !collider.protected(self):
-		collider.bounceOffOfIceScater(self, velocityLength)
 		collider.changeHealth(damageToOther)
 
 func collideWithEnemy(collider):
@@ -40,15 +42,17 @@ func collideWithEnemy(collider):
 		
 	var damageToOther = damageDealt()
 	var velocityLength = (velocity.length() + collider.velocity.length()) / 2
+	
+	bounceOffOfIceScater(collider, velocityLength)
 	if !protected(collider):
-		bounceOffOfIceScater(collider, velocityLength)
 		changeHealth(collider.damageDealt())
+		
+	collider.bounceOffOfIceScater(self, velocityLength)
 	if !collider.protected(self):
-		collider.bounceOffOfIceScater(self, velocityLength)
 		collider.changeHealth(damageToOther)
 
 func checkDrop():
-	if randf() < 0.5:
+	if randf() < 0.75:
 		var newDrop = itemScene.instance()
 		newDrop.position = self.position
 		var DegreesInRadians = 0.34

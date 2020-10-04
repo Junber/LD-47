@@ -49,7 +49,6 @@ func _process(delta):
 		endStreak()
 	
 	$ComboBar/DecreasingOfBar.position = Vector2($ComboBar.get_progress_texture().get_width(),0) * comboBarFillRatio()
-	print($ComboBar/DecreasingOfBar.position)
 	
 	if !$ScoreLabelEffectTimer.is_stopped():
 		$ScoreLabel.set_rotation(rand_range(-0.1, 0.1))

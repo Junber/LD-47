@@ -34,9 +34,7 @@ func windowResized():
 
 func _input(event):
 	if event.is_action_pressed("open_options"):
-		if !visible:
-			popup()
-		else:
+		if visible:
 			go_away()
 
 func initialze_resolution_setting():
@@ -56,7 +54,6 @@ func set_resolution_button_to_current_resolution():
 
 func popup():
 	visible = true
-	get_tree().paused = true
 	
 	musicSlider.set_value(get_volume("Music"))
 	sfxSlider.set_value(get_volume("SoundEffects"))
@@ -65,8 +62,6 @@ func popup():
 
 func go_away():
 	visible = false
-	get_tree().paused = false
-	
 	save_options()
 
 func set_resolution_options():
