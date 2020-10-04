@@ -5,7 +5,7 @@ var target
 func _ready():
 	target = $"../Player".position
 
-func collideWithLaser(_damage):
+func collideWithLaser(_collider, _damage):
 	pass
 	
 func getDirection():

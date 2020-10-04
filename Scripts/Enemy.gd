@@ -6,9 +6,6 @@ signal enemyDied
 signal enemyKilledByPlayer
 signal enemyNotKilledByPlayer
 
-func protected(_collider):
-	return false
-
 func collideWithIceScater(collider):
 	if dead or collider.dead:
 		return

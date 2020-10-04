@@ -15,5 +15,5 @@ func _physics_process(delta):
 		var laserEndPoint = to_local(get_collision_point())
 		laserBeam.points[1] = laserEndPoint
 		laserSparks.position = laserEndPoint
-	get_collider().collideWithLaser(damage * delta)
+	get_collider().collideWithLaser(get_parent(), damage * delta)
 

@@ -14,13 +14,17 @@ var dead = false
 
 func _ready():
 	pass
+	
+func protected(_collider):
+	return false
 
 func collideWithWall(_collider, collision):
 	velocity = velocity.bounce(collision.normal) / 2
 	rotationSpeed /= 2
 
-func collideWithLaser(damage):
-	changeHealth(damage)
+func collideWithLaser(collider, damage):
+	if !protected(collider):
+		changeHealth(damage)
 	
 func collideWithIceScater(_collider):
 	pass
