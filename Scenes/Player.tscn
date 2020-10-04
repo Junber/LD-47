@@ -5,8 +5,8 @@
 [ext_resource path="res://Scenes/IceScater.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=4]
 [ext_resource path="res://Resources/Graphics/PlayerDead.png" type="Texture" id=5]
-[ext_resource path="res://Scripts/PlayerCamera.gd" type="Script" id=6]
 [ext_resource path="res://Resources/Graphics/ActiveShieldENGAGED.png" type="Texture" id=7]
+[ext_resource path="res://Scripts/Screenshaker.gd" type="Script" id=8]
 
 [node name="Player" instance=ExtResource( 3 )]
 scale = Vector2( 2, 2 )
@@ -67,13 +67,20 @@ limit_bottom = 2160
 limit_smoothed = true
 drag_margin_h_enabled = true
 drag_margin_v_enabled = true
-script = ExtResource( 6 )
 __meta__ = {
 "_editor_description_": ""
 }
 
-[node name="ScreenshakeTimer" type="Timer" parent="PlayerCamera" index="0"]
-wait_time = 0.1
+[node name="Screenshaker" type="Node" parent="PlayerCamera" index="0"]
+script = ExtResource( 8 )
+
+[node name="ShakeTween" type="Tween" parent="PlayerCamera/Screenshaker" index="0"]
+
+[node name="Frequency" type="Timer" parent="PlayerCamera/Screenshaker" index="1"]
+
+[node name="Duration" type="Timer" parent="PlayerCamera/Screenshaker" index="2"]
+[connection signal="timeout" from="PlayerCamera/Screenshaker/Frequency" to="PlayerCamera/Screenshaker" method="_on_Frequency_timeout"]
+[connection signal="timeout" from="PlayerCamera/Screenshaker/Duration" to="PlayerCamera/Screenshaker" method="_on_Duration_timeout"]
 
 [node name="SlowdownTimer" type="Timer" parent="." index="10"]
 wait_time = 10.0

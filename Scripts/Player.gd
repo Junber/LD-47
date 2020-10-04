@@ -40,6 +40,12 @@ func _on_SlowdownTimer_timeout():
 	Engine.time_scale *= timeMultiplier
 	timeMultiplier = 1
 
+var bulletsLeft = 0
+func changeHealth(amount):
+	if amount < 0:
+		$"PlayerCamera/Screenshaker".start()
+	.changeHealth(amount)
+
 func kill():
 	if !dead:
 		.kill()
@@ -65,7 +71,6 @@ func getDirection():
 
 func enemyDied():
 	$PlayerCamera.zoom = $PlayerCamera.zoom * 0.6
-	#$PlayerCamera.startScreenshake()
 
 func getSpecialDirection():
 	var direction = getDirection()
