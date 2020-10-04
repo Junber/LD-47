@@ -17,7 +17,7 @@ func enemyDied():
 func increaseScore():
 	score += round((pow(currentStreak, 1.5) - pow(currentStreak - 1, 1.5)) * 100)
 	$ScoreLabel.text = str(score)
-	$ScoreLabel.rect_position += $ScoreLabel.rect_size / 2
+	$ScoreLabel.rect_position += $BigScorePosition.position
 	$ScoreLabel.rect_scale = Vector2(2, 2)
 	$ScoreLabelEffectTimer.start()
 
@@ -40,4 +40,4 @@ func _on_Player_playerDied():
 func _on_ScoreLabelEffectTimer_timeout():
 	$ScoreLabel.rect_scale = Vector2(1, 1)
 	$ScoreLabel.set_rotation(0)
-	$ScoreLabel.rect_position -= $ScoreLabel.rect_size / 2
+	$ScoreLabel.rect_position = $NormalScorePosition.position

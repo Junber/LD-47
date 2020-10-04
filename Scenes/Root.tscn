@@ -1,14 +1,10 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Scripts/EnemyIndicators.gd" type="Script" id=2]
+[ext_resource path="res://Scenes/HUD.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Resources/Graphics/Background.png" type="Texture" id=3]
 [ext_resource path="res://Scripts/EnemySpawnPath.gd" type="Script" id=4]
 [ext_resource path="res://Scripts/KillSlowdownTimer.gd" type="Script" id=5]
-[ext_resource path="res://Resources/Graphics/CombobarInside.png" type="Texture" id=6]
-[ext_resource path="res://Resources/Graphics/CombobarOutline.png" type="Texture" id=7]
-[ext_resource path="res://Resources/Fonts/Jacmax.ttf" type="DynamicFontData" id=9]
-[ext_resource path="res://Scripts/ScoreSystem.gd" type="Script" id=10]
 [ext_resource path="res://Resources/Sounds/boo.wav" type="AudioStream" id=11]
 [ext_resource path="res://Resources/Sounds/wow.wav" type="AudioStream" id=12]
 [ext_resource path="res://Scripts/SfxPlayer.gd" type="Script" id=13]
@@ -19,14 +15,6 @@
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 1137.59, 234.963, 0, 0, 0, 0, 661.882, 310.473, 0, 0, 0, 0, 322.088, 461.492, 0, 0, 0, 0, 193.721, 680.471, 0, 0, 0, 0, 261.68, 1012.71, 0, 0, 0, 0, 337.19, 1382.71, 0, 0, 0, 0, 465.556, 1699.85, 0, 0, 0, 0, 767.596, 1828.22, 0, 0, 0, 0, 1190.45, 1820.67, 0, 0, 0, 0, 1681.27, 1835.77, 0, 0, 0, 0, 1998.41, 1858.43, 0, 0, 0, 0, 2398.61, 1850.87, 0, 0, 0, 0, 2836.57, 1828.22, 0, 0, 0, 0, 3297.18, 1677.2, 0, 0, 0, 0, 3440.65, 1541.28, 0, 0, 0, 0, 3599.22, 1277, 0, 0, 0, 0, 3689.83, 1012.71, 0, 0, 0, 0, 3493.5, 748.43, 0, 0, 0, 0, 3206.57, 431.289, 0, 0, 0, 0, 2896.97, 287.82, 0, 0, 0, 0, 2496.77, 242.514, 0, 0, 0, 0, 2111.67, 197.208, 0, 0, 0, 0, 1734.12, 167.004, 0, 0, 0, 0, 1364.12, 189.657, 0, 0, 0, 0, 1137.59, 227.412 )
 }
-
-[sub_resource type="DynamicFont" id=2]
-size = 80
-font_data = ExtResource( 9 )
-
-[sub_resource type="DynamicFont" id=3]
-size = 30
-font_data = ExtResource( 9 )
 
 [node name="Root" type="Node2D"]
 scale = Vector2( 1.00172, 0.998806 )
@@ -68,69 +56,7 @@ script = ExtResource( 4 )
 wait_time = 3.0
 one_shot = true
 
-[node name="HUD" type="CanvasLayer" parent="."]
-
-[node name="EnemyIndicators" type="Node2D" parent="HUD"]
-script = ExtResource( 2 )
-
-[node name="ScoreSystem" type="Control" parent="HUD"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-script = ExtResource( 10 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="ScoreLabel" type="Label" parent="HUD/ScoreSystem"]
-margin_left = 50.0
-margin_top = 50.0
-margin_right = 94.0
-margin_bottom = 296.0
-rect_pivot_offset = Vector2( 22, 123 )
-custom_fonts/font = SubResource( 2 )
-custom_colors/font_color = Color( 1, 0.0823529, 0, 1 )
-text = "0
-
-"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="ComboBar" type="TextureProgress" parent="HUD/ScoreSystem"]
-anchor_left = 0.5
-anchor_right = 0.5
-margin_left = -50.0
-margin_top = 20.0
-margin_right = 50.0
-margin_bottom = 30.0
-rect_scale = Vector2( 3, 2 )
-max_value = 10.0
-step = 0.0
-texture_under = ExtResource( 7 )
-texture_progress = ExtResource( 6 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="StreakLabel" type="Label" parent="HUD/ScoreSystem/ComboBar"]
-anchor_left = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 10.1022
-margin_right = 46.1022
-margin_bottom = 1.0
-custom_fonts/font = SubResource( 3 )
-custom_colors/font_color = Color( 1, 0, 0, 1 )
-text = "x 3"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="ScoreLabelEffectTimer" type="Timer" parent="HUD/ScoreSystem"]
-wait_time = 0.2
-one_shot = true
+[node name="HUD" parent="." instance=ExtResource( 2 )]
 
 [node name="OptionsScreenLayer" type="CanvasLayer" parent="."]
 pause_mode = 2
@@ -155,8 +81,5 @@ wait_time = 0.03
 one_shot = true
 script = ExtResource( 5 )
 [connection signal="playerDied" from="Player" to="EnemySpawnPath" method="_on_Player_playerDied"]
-[connection signal="playerDied" from="Player" to="HUD/ScoreSystem" method="_on_Player_playerDied"]
-[connection signal="enemySpawned" from="EnemySpawnPath" to="HUD/EnemyIndicators" method="_on_EnemySpawnPath_enemySpawned"]
 [connection signal="timeout" from="EnemySpawnPath/EnemySpawnTimer" to="EnemySpawnPath" method="_on_EnemySpawnTimer_timeout"]
-[connection signal="timeout" from="HUD/ScoreSystem/ScoreLabelEffectTimer" to="HUD/ScoreSystem" method="_on_ScoreLabelEffectTimer_timeout"]
 [connection signal="timeout" from="KillSlowdownTimer" to="KillSlowdownTimer" method="_on_KillSlowdownTimer_timeout"]
