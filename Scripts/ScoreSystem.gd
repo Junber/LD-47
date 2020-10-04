@@ -11,14 +11,17 @@ func showStreak():
 func enemyDied():
 	$ComboBar.value += comboTimeIncreasePerKill
 	currentStreak += 1
+	increaseScore()
 	showStreak()
 
-func increaseScore(_amount):
-	score += round(pow(currentStreak, 1.5)) * 100
+func increaseScore():
+	score += round((pow(currentStreak, 1.5) - pow(currentStreak - 1, 1.5)) * 100)
 	$ScoreLabel.text = str(score)
+	$ScoreLabel.rect_position += $ScoreLabel.rect_size / 2
+	$ScoreLabel.rect_scale = Vector2(2, 2)
+	$ScoreLabelEffectTimer.start()
 
 func endStreak():
-	increaseScore(currentStreak)
 	currentStreak = 0
 	showStreak()
 
@@ -26,6 +29,15 @@ func _process(delta):
 	$ComboBar.value = $ComboBar.value - delta
 	if $ComboBar.value == 0:
 		endStreak()
+	
+	if !$ScoreLabelEffectTimer.is_stopped():
+		$ScoreLabel.set_rotation(rand_range(-0.1, 0.1))
 
 func _on_Player_playerDied():
 	endStreak()
+
+
+func _on_ScoreLabelEffectTimer_timeout():
+	$ScoreLabel.rect_scale = Vector2(1, 1)
+	$ScoreLabel.set_rotation(0)
+	$ScoreLabel.rect_position -= $ScoreLabel.rect_size / 2
