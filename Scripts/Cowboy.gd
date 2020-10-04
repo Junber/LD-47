@@ -16,4 +16,5 @@ func _on_GunTimer_timeout():
 
 
 func _on_GunCockingTimer_timeout():
-	$GunCockingPlayer.play()
+	if !dead:
+		$GunCockingPlayer.play()

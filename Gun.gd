@@ -1,5 +1,5 @@
 extends "res://Scripts/Item.gd"
 
 func getHitBy(collider, _collision):
-	collider.hasGun = true
+	collider.bulletsLeft = 6
 	getUsed()
