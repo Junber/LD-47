@@ -36,7 +36,7 @@ func enemyDied():
 
 func _process(delta):
 	boostProgressBar.value = boostTimer.time_left / boostTimer.wait_time
-	if Input.is_action_just_pressed("boost"):
+	if !dead and Input.is_action_just_pressed("boost"):
 		if boostTimer.is_stopped():
 			boostTimer.start()
 			boost()
