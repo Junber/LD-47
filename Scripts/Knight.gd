@@ -1,7 +1,16 @@
 extends "res://Scripts/Enemy.gd"
 
-func protected(collider):
-	return abs((global_position - collider.global_position).angle_to(Vector2(0,1))) <= PI / 2
+var shieldRotation = 0
 
-func _process(_delta):
-	rotationSpeed = 0
+func protected(collider):
+	return abs((collider.global_position - global_position).angle_to(Vector2(0,-1).rotated(shieldRotation))) <= PI / 2
+
+func getDirection():
+	return .getDirection() / 2
+
+func _process(delta):
+	var angle = ($"../Player".global_position - global_position).angle_to(Vector2(0,-1).rotated(shieldRotation))
+	
+	if abs(angle) > 0.1:
+		shieldRotation += -sign(angle) * delta
+	$ShieldSprite.rotation = shieldRotation - rotation
