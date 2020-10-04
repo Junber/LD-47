@@ -40,7 +40,6 @@ func _on_SlowdownTimer_timeout():
 	Engine.time_scale *= timeMultiplier
 	timeMultiplier = 1
 
-var bulletsLeft = 0
 func changeHealth(amount):
 	if amount < 0:
 		$"PlayerCamera/Screenshaker".start()
