@@ -23,13 +23,13 @@ func increaseStreak():
 	currentStreak += 1
 	showStreak()
 	$ComboBar/StreakLabel.rect_position = $ComboBar/BigStreakPosition.position
-	$ComboBar/StreakLabel.rect_scale = Vector2(rand_range(1.1, 1.5), rand_range(1.1, 1.5))
+	$ComboBar/StreakLabel.rect_scale = Vector2(rand_range(0.3, 0.7), rand_range(0.3, 0.7))
 	$ComboBar/StreakLabel.set_rotation(rand_range(-0.4, 0.4))
 
 func endStreak():
 	currentStreak = 0
 	showStreak()
-	$ComboBar/StreakLabel.rect_scale = Vector2(1, 1)
+	$ComboBar/StreakLabel.rect_scale = Vector2(0.5, 0.5)
 	$ComboBar/StreakLabel.set_rotation(0)
 	$ComboBar/StreakLabel.rect_position = $ComboBar/NormalStreakPosition.position
 

@@ -5,7 +5,6 @@ signal boosted
 signal shot
 
 onready var boostTimer = $BoostCooldownTimer
-onready var boostProgressBar = $BoostCooldownProgessBar
 
 var hasShield = false
 export var shieldDuration = 5.0
@@ -117,7 +116,6 @@ func shoot():
 func _process(delta):
 	delta *= timeMultiplier
 	
-	boostProgressBar.value = boostTimer.time_left / boostTimer.wait_time
 	if !dead and !frozen and Input.is_action_just_pressed("boost"):
 		if boostTimer.is_stopped():
 			boostTimer.start(boostCooldownDuration / timeMultiplier)

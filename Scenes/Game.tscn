@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Resources/Sounds/boo.wav" type="AudioStream" id=1]
 [ext_resource path="res://Resources/Sounds/wow.wav" type="AudioStream" id=2]
@@ -11,6 +11,8 @@
 [ext_resource path="res://Scripts/SfxPlayer.gd" type="Script" id=9]
 [ext_resource path="res://Scripts/Border.gd" type="Script" id=10]
 [ext_resource path="res://Resources/Graphics/Background.png" type="Texture" id=11]
+[ext_resource path="res://Resources/Sounds/crowd_background_loop.ogg" type="AudioStream" id=12]
+[ext_resource path="res://Scripts/CrowdPlayer.gd" type="Script" id=13]
 
 [node name="Game" type="Node2D"]
 pause_mode = 2
@@ -56,15 +58,22 @@ one_shot = true
 
 [node name="HUD" parent="." instance=ExtResource( 6 )]
 
+[node name="CrowdPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 12 )
+volume_db = -20.0
+autoplay = true
+bus = "SoundEffects"
+script = ExtResource( 13 )
+
 [node name="BooPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 1 )
+bus = "SoundEffects"
 script = ExtResource( 9 )
-pitchVariation = 0.5
 
 [node name="WowPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 2 )
+bus = "SoundEffects"
 script = ExtResource( 9 )
-pitchVariation = 0.5
 
 [node name="KillSlowdownTimer" type="Timer" parent="."]
 pause_mode = 1
@@ -78,4 +87,5 @@ script = ExtResource( 8 )
 [connection signal="timeout" from="EnemySpawnPath/EnemySpawnTimer" to="EnemySpawnPath" method="_on_EnemySpawnTimer_timeout"]
 [connection signal="restartGame" from="HUD" to="." method="_on_HUD_restartGame"]
 [connection signal="scoreChanged" from="HUD" to="." method="_on_HUD_scoreChanged"]
+[connection signal="finished" from="CrowdPlayer" to="CrowdPlayer" method="_on_CrowdPlayer_finished"]
 [connection signal="timeout" from="KillSlowdownTimer" to="KillSlowdownTimer" method="_on_KillSlowdownTimer_timeout"]

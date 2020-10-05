@@ -166,7 +166,7 @@ func hideDialog():
 
 func showDialog(line):
 	textbox.set_text(line)
-	textbox.set_name("You:")
+	textbox.set_name("Mysterious Voice")
 	textbox.visible = true
 	get_tree().paused = true
 	$"HUD/ScoreSystem/ComboBar/DecreasingOfBar".emitting = false

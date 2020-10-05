@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Scripts/MenuButtonSoundPlayer.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/Root.gd" type="Script" id=2]
@@ -7,6 +7,9 @@
 [ext_resource path="res://Resources/Sounds/menu_button.wav" type="AudioStream" id=5]
 [ext_resource path="res://Scenes/StartMenuScreen.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scenes/MenuScreen.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scripts/MusicLoopPlayer.gd" type="Script" id=8]
+[ext_resource path="res://Resources/Sounds/main_theme_intro.ogg" type="AudioStream" id=9]
+[ext_resource path="res://Resources/Sounds/main_theme_loop.ogg" type="AudioStream" id=10]
 [ext_resource path="res://Scenes/OptionsScreen.tscn" type="PackedScene" id=15]
 
 [node name="Root" type="Node2D"]
@@ -40,6 +43,16 @@ visible = false
 stream = ExtResource( 5 )
 bus = "SoundEffects"
 script = ExtResource( 1 )
+
+[node name="MusicIntroPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 9 )
+autoplay = true
+bus = "Music"
+
+[node name="MusicLoopPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 10 )
+bus = "Music"
+script = ExtResource( 8 )
 [connection signal="button_pressed" from="MenuScreenLayer/MenuScreen" to="MenuButtonSoundPlayer" method="_on_MenuScreen_button_pressed"]
 [connection signal="pause" from="MenuScreenLayer/MenuScreen" to="." method="_on_MenuScreen_pause"]
 [connection signal="quit_game" from="MenuScreenLayer/MenuScreen" to="." method="_on_MenuScreen_quit_game"]
@@ -53,3 +66,5 @@ script = ExtResource( 1 )
 [connection signal="button_pressed" from="MenuScreenLayer/DeleteScreen" to="MenuButtonSoundPlayer" method="_on_DeleteScreen_button_pressed"]
 [connection signal="deleteSaveData" from="MenuScreenLayer/DeleteScreen" to="." method="_on_DeleteScreen_deleteSaveData"]
 [connection signal="button_pressed" from="MenuScreenLayer/CreditsScreen" to="MenuButtonSoundPlayer" method="_on_CreditsScreen_button_pressed"]
+[connection signal="finished" from="MusicIntroPlayer" to="MusicLoopPlayer" method="_on_MusicIntroPlayer_finished"]
+[connection signal="finished" from="MusicLoopPlayer" to="MusicLoopPlayer" method="_on_MusicLoopPlayer_finished"]

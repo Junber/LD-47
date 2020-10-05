@@ -1,7 +1,7 @@
 You can advance dialog with [Space] or left or right mouse button.
 You can skip all current dialog with [u] or the middle mouse button (but I would not recommend doing this now).
 Hello Player!
-Welcome to the world of [...].
+Welcome to the world of Permafrost Pirouette.
 It is a world much like, well, your world...
 If you are from planet earth and within our current timeline.
 With the exception being that here a few chosen individuals selected throughout time are pitched against eachother in a neverending contest to see who is the strongest, the best.

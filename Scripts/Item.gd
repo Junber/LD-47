@@ -1,6 +1,10 @@
 extends KinematicBody2D
 
 var velocity = Vector2(0,0)
+var rotationSpeed = 0
+
+func _ready():
+	rotationSpeed = rand_range(50, 100)
 
 func getHitBy(_collider, _collision):
 	pass
@@ -21,6 +25,12 @@ func _process(delta):
 	if visible:
 		velocity *= pow(0.9, delta)
 		velocity -= velocity.normalized() * 100 * delta
+		rotationSpeed *= pow(0.8, delta)
+		rotationSpeed -= 30 * delta
+		if rotationSpeed < 0:
+			rotationSpeed = 0
+		
+		rotation += rotationSpeed * delta
 		
 		var collision = move_and_collide(velocity * delta)
 		if collision:

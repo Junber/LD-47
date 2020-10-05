@@ -1,10 +1,10 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Scripts/ScoreSystem.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/EnemyIndicators.gd" type="Script" id=2]
 [ext_resource path="res://Resources/Graphics/CombobarOutline.png" type="Texture" id=3]
 [ext_resource path="res://Resources/Graphics/CombobarInside.png" type="Texture" id=4]
-[ext_resource path="res://Resources/Fonts/Jacmax.ttf" type="DynamicFontData" id=5]
+[ext_resource path="res://Resources/Fonts/HUD.tres" type="DynamicFont" id=5]
 [ext_resource path="res://Resources/Graphics/UIBullet.png" type="Texture" id=6]
 [ext_resource path="res://Resources/Graphics/Blood.png" type="Texture" id=7]
 [ext_resource path="res://Scripts/HUD.gd" type="Script" id=8]
@@ -13,15 +13,7 @@
 [ext_resource path="res://theme.tres" type="Theme" id=11]
 [ext_resource path="res://Scripts/EnemiesLeftLabel.gd" type="Script" id=12]
 
-[sub_resource type="DynamicFont" id=1]
-size = 80
-font_data = ExtResource( 5 )
-
-[sub_resource type="DynamicFont" id=2]
-size = 30
-font_data = ExtResource( 5 )
-
-[sub_resource type="ParticlesMaterial" id=3]
+[sub_resource type="ParticlesMaterial" id=1]
 emission_shape = 2
 emission_box_extents = Vector3( 1, 1, 1 )
 flag_disable_z = true
@@ -57,7 +49,7 @@ margin_top = 50.0
 margin_right = 94.0
 margin_bottom = 296.0
 rect_pivot_offset = Vector2( 22, 123 )
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = ExtResource( 5 )
 custom_colors/font_color = Color( 1, 0.0823529, 0, 1 )
 text = "0
 
@@ -87,9 +79,11 @@ anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 10.0
-margin_right = 46.0
-margin_bottom = 1.0
-custom_fonts/font = SubResource( 2 )
+margin_top = 10.0
+margin_right = 155.0
+margin_bottom = 60.0
+rect_scale = Vector2( 0.5, 0.5 )
+custom_fonts/font = ExtResource( 5 )
 custom_colors/font_color = Color( 1, 0, 0, 1 )
 text = "x 3"
 align = 1
@@ -103,14 +97,14 @@ pause_mode = 1
 modulate = Color( 1, 0, 0, 1 )
 z_index = 1
 amount = 20
-process_material = SubResource( 3 )
+process_material = SubResource( 1 )
 texture = ExtResource( 7 )
 
 [node name="NormalStreakPosition" type="Position2D" parent="ScoreSystem/ComboBar"]
-position = Vector2( 110, 0 )
+position = Vector2( 110, 10 )
 
 [node name="BigStreakPosition" type="Position2D" parent="ScoreSystem/ComboBar"]
-position = Vector2( 125, 15 )
+position = Vector2( 125, 20 )
 
 [node name="ScoreLabelEffectTimer" type="Timer" parent="ScoreSystem"]
 wait_time = 0.2
@@ -120,7 +114,7 @@ one_shot = true
 position = Vector2( 50, 50 )
 
 [node name="BigScorePosition" type="Position2D" parent="ScoreSystem"]
-position = Vector2( 72, 130 )
+position = Vector2( 90, 170 )
 
 [node name="BulletsLeftIcon" type="Sprite" parent="."]
 visible = false
@@ -135,7 +129,7 @@ margin_top = 50.0
 margin_right = 1874.0
 margin_bottom = 296.0
 rect_pivot_offset = Vector2( 22, 123 )
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = ExtResource( 5 )
 custom_colors/font_color = Color( 1, 0.0823529, 0, 1 )
 text = "0
 
@@ -158,7 +152,7 @@ margin_top = 965.0
 margin_right = 1874.0
 margin_bottom = 1211.0
 rect_pivot_offset = Vector2( 22, 30 )
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = ExtResource( 5 )
 custom_colors/font_color = Color( 1, 0.0823529, 0, 1 )
 text = "0
 
@@ -171,7 +165,7 @@ __meta__ = {
 
 [node name="TextBox" parent="." instance=ExtResource( 9 )]
 visible = false
-position = Vector2( 116.736, 401.841 )
+position = Vector2( 116.736, 300 )
 scale = Vector2( 10, 10 )
 
 [node name="RestartButton" type="Button" parent="."]

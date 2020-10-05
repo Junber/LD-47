@@ -15,19 +15,19 @@ script = ExtResource( 1 )
 health = 80
 itemScene = ExtResource( 6 )
 
-[node name="DeadSprite" parent="." index="0"]
-scale = Vector2( 0.12, 0.12 )
+[node name="ShieldSprite" type="Sprite" parent="." index="0"]
+position = Vector2( 1, 1 )
+scale = Vector2( 0.65, 0.65 )
+texture = ExtResource( 5 )
+
+[node name="DeadSprite" parent="." index="1"]
 texture = ExtResource( 2 )
 
-[node name="AliveSprite" parent="." index="1"]
+[node name="AliveSprite" parent="." index="2"]
 texture = ExtResource( 3 )
 
-[node name="CollisionShape2D" parent="." index="2"]
+[node name="CollisionShape2D" parent="." index="3"]
 shape = SubResource( 1 )
-
-[node name="ShieldSprite" type="Sprite" parent="." index="3"]
-scale = Vector2( 1.1, 1.1 )
-texture = ExtResource( 5 )
 
 [node name="BloodParticles" parent="." index="5"]
 visibility_rect = Rect2( 0, 0, 3840, 2160 )
