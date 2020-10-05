@@ -4,16 +4,18 @@
 [ext_resource path="res://Scripts/Gun.gd" type="Script" id=2]
 [ext_resource path="res://Resources/Graphics/Gun.png" type="Texture" id=3]
 
-[sub_resource type="CircleShape2D" id=1]
-radius = 7.72218
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 17.3874
+height = 34.2687
 
 [node name="Gun" instance=ExtResource( 1 )]
-scale = Vector2( 5, 5 )
 script = ExtResource( 2 )
 
 [node name="Sprite" parent="." index="0"]
+scale = Vector2( 0.2, 0.2 )
 texture = ExtResource( 3 )
 
 [node name="CollisionShape2D" parent="." index="1"]
-position = Vector2( 0.0322393, 0.828277 )
+position = Vector2( -1.74956, -1.73306 )
+rotation = 1.39626
 shape = SubResource( 1 )

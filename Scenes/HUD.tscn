@@ -125,7 +125,7 @@ position = Vector2( 72, 130 )
 [node name="BulletsLeftIcon" type="Sprite" parent="."]
 visible = false
 position = Vector2( 1779.32, 84.2887 )
-scale = Vector2( 2, 2 )
+scale = Vector2( 0.3, 0.3 )
 texture = ExtResource( 6 )
 
 [node name="BulletsLeftLabel" type="Label" parent="."]
@@ -147,11 +147,12 @@ __meta__ = {
 
 [node name="EnemiesLeftIcon" type="Sprite" parent="."]
 visible = false
-position = Vector2( 1779.32, 980 )
-scale = Vector2( 2, 2 )
+position = Vector2( 1750, 980 )
+scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 10 )
 
 [node name="EnemiesLeftLabel" type="Label" parent="."]
+visible = false
 margin_left = 1830.0
 margin_top = 965.0
 margin_right = 1874.0
