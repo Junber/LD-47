@@ -1,3 +1,5 @@
+You can advance dialog with [Space] or left or right mouse button.
+You can skip all current dialog with [u] or the middle mouse button (but I would not recommend doing this now).
 Hello Player!
 Welcome to the world of [...].
 It is a world much like, well, your world...

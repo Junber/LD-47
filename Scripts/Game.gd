@@ -20,6 +20,9 @@ func _input(event):
 			textbox.show_all_text()
 		else:
 			print_next_dialog_line()
+	elif !inMenu and event.is_action_pressed("skip_dialog"):
+		dialogProgress = dialog.size()
+		hideDialog()
 	
 func setTutorialProgress(newTutorialProgress):
 	tutorialProgress = newTutorialProgress

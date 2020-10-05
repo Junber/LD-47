@@ -34,6 +34,7 @@ func quitGame():
 func restartLevel():
 	if game:
 		game.queue_free()
+	Engine.time_scale = 1
 	game = gameScene.instance()
 	add_child(game)
 	game.setTutorialProgress(tutorialProgress)
