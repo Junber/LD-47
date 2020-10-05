@@ -1,1 +1,4 @@
-Level with all enemies; Player has to kill 15 enemies
+Wow, all these enemies really are no match for you.
+Seems like there really is a reason why they decided to gang up against you.
+And now all of them are coming for you.
+Maybe killing 15 more will make them stop.

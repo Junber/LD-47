@@ -1,1 +1,6 @@
-Knight appears; Player learns to move around him to kill him
+Lovely stuff, you have proven yourself once more.
+Okay, here is a new contendor.
+The knight.
+This one has a shield to block attacks directed at it.
+So ya gotta move around it to attack. Got it?
+Alright, let's try it.

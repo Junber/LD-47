@@ -1,1 +1,1 @@
-Player learns to shoot
+Cool now take aim and shoot with [Space] (or your again right mouse button if you REALLY want to) until this revolver is completely empty.

@@ -1,1 +1,4 @@
-Player picks up shield
+Now you can also get a shield of your own. And as opposed to the shield of the stupid knight it actually blocks attacks from all directions.
+...
+But it doesn't last forever.
+Anyways, you should pick it up and see if it fits.
