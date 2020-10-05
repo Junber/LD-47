@@ -11,6 +11,14 @@ export (PackedScene) var itemScene
 func getHitBy(collider, _collision):
 	collider.collideWithEnemy(self)
 
+func playSfx(collider):
+	if protected(collider) or collider.protected(self):
+		$ShieldSoundPlayer.play()
+	if dead or collider.dead:
+		$KillSoundPlayer.play()
+	else:
+		$DamageSoundPlayer.play()
+
 func collideWithPlayer(collider):
 	if dead or collider.dead:
 		return
@@ -35,6 +43,8 @@ func collideWithPlayer(collider):
 	collider.bounceOffOfIceScater(self, velocityLength)
 	if !collider.protected(self):
 		collider.changeHealth(damageToOther)
+	
+	playSfx(collider)
 
 func collideWithEnemy(collider):
 	if dead or collider.dead:
@@ -50,6 +60,8 @@ func collideWithEnemy(collider):
 	collider.bounceOffOfIceScater(self, velocityLength)
 	if !collider.protected(self):
 		collider.changeHealth(damageToOther)
+	
+	playSfx(collider)
 
 func checkDrop():
 	if randf() < 0.75:

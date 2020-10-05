@@ -27,6 +27,7 @@ func _on_QuitButton_pressed():
 	emit_signal("button_pressed")
 
 func _on_RestartButton_pressed():
+	#warning-ignore:return_value_discarded
 	get_tree().reload_current_scene()
 	get_tree().paused = false
 	emit_signal("button_pressed")

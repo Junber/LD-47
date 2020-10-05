@@ -32,7 +32,7 @@ func slowTime():
 		AudioServer.add_bus_effect(AudioServer.get_bus_index("Master"), audioEffect, 0)
 		$SlowdownTimer.start(slowDownDuration / timeMultiplier)
 	else:
-		$SlowdownTimer.start($SlowdownTimer.time_left + slowDownDuration / timeMultiplier)
+		$SlowdownTimer.start(slowDownDuration / timeMultiplier)
 
 func _on_SlowdownTimer_timeout():
 	AudioServer.remove_bus_effect(AudioServer.get_bus_index("Master"),  0)

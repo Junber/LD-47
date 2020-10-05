@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Resources/Graphics/LaserSparks.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Item.gd" type="Script" id=2]
+[ext_resource path="res://Resources/Sounds/item.wav" type="AudioStream" id=3]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 31.1548
@@ -22,4 +23,10 @@ shape = SubResource( 1 )
 wait_time = 0.4
 one_shot = true
 autostart = true
+
+[node name="PickupSoundPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 3 )
+max_distance = 4500.0
+bus = "SoundEffects"
 [connection signal="timeout" from="NoPickUpTimer" to="." method="_on_NoPickUpTimer_timeout"]
+[connection signal="finished" from="PickupSoundPlayer" to="." method="_on_PickupSoundPlayer_finished"]
