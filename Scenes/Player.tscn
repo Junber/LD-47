@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Resources/Graphics/Characters/Protagonist.png" type="Texture" id=1]
 [ext_resource path="res://Resources/Graphics/BoostTimer.png" type="Texture" id=2]
 [ext_resource path="res://Scenes/IceScater.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=4]
 [ext_resource path="res://Resources/Graphics/PlayerDead.png" type="Texture" id=5]
+[ext_resource path="res://Resources/Sounds/gunshot.wav" type="AudioStream" id=6]
 [ext_resource path="res://Resources/Graphics/ActiveShieldENGAGED.png" type="Texture" id=7]
 [ext_resource path="res://Scripts/Screenshaker.gd" type="Script" id=8]
 
@@ -12,7 +13,7 @@
 scale = Vector2( 2, 2 )
 z_index = 2
 collision_layer = 1
-collision_mask = 4
+collision_mask = 20
 script = ExtResource( 4 )
 health = 240
 rotationIncrease = 100
@@ -52,6 +53,7 @@ scale = Vector2( 0.995281, 0.933928 )
 texture = ExtResource( 7 )
 
 [node name="GunShotPlayer" type="AudioStreamPlayer2D" parent="." index="8"]
+stream = ExtResource( 6 )
 max_distance = 4500.0
 __meta__ = {
 "_editor_description_": ""
@@ -79,10 +81,14 @@ script = ExtResource( 8 )
 [node name="Frequency" type="Timer" parent="PlayerCamera/Screenshaker" index="1"]
 
 [node name="Duration" type="Timer" parent="PlayerCamera/Screenshaker" index="2"]
-[connection signal="timeout" from="PlayerCamera/Screenshaker/Frequency" to="PlayerCamera/Screenshaker" method="_on_Frequency_timeout"]
-[connection signal="timeout" from="PlayerCamera/Screenshaker/Duration" to="PlayerCamera/Screenshaker" method="_on_Duration_timeout"]
 
 [node name="SlowdownTimer" type="Timer" parent="." index="10"]
 wait_time = 10.0
 one_shot = true
+
+[node name="ShieldTimer" type="Timer" parent="." index="11"]
+one_shot = true
+[connection signal="timeout" from="PlayerCamera/Screenshaker/Frequency" to="PlayerCamera/Screenshaker" method="_on_Frequency_timeout"]
+[connection signal="timeout" from="PlayerCamera/Screenshaker/Duration" to="PlayerCamera/Screenshaker" method="_on_Duration_timeout"]
 [connection signal="timeout" from="SlowdownTimer" to="." method="_on_SlowdownTimer_timeout"]
+[connection signal="timeout" from="ShieldTimer" to="." method="_on_ShieldTimer_timeout"]

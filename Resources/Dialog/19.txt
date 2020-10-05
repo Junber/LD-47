@@ -1,0 +1,1 @@
+Level with all enemies; Player has to kill 15 enemies

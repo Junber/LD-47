@@ -1,0 +1,1 @@
+Level with all enemies; Player has to reach a score of 10000(??)

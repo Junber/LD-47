@@ -1,5 +1,7 @@
 extends Control
 
+signal scoreChanged()
+
 var score = 0
 var currentStreak = 0
 
@@ -12,7 +14,7 @@ func _ready():
 func showStreak():
 	$ComboBar/StreakLabel.text = "x " + str(currentStreak)
 
-func enemyDied():
+func enemyDied(_enemy):
 	$ComboBar.value += comboTimeIncreasePerKill
 	increaseStreak()
 	increaseScore()
@@ -38,6 +40,7 @@ func increaseScore():
 	$ScoreLabel.rect_scale = Vector2(2, 2)
 	$ScoreLabelEffectTimer.start()
 	$ComboBar/DecreasingOfBar.emitting=true
+	emit_signal("scoreChanged", score)
 
 func comboBarFillRatio():
 	return $ComboBar.value/$ComboBar.max_value

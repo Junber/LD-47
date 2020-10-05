@@ -34,3 +34,4 @@ func _on_NoPickUpTimer_timeout():
 
 func _on_PickupSoundPlayer_finished():
 	queue_free()
+	get_parent().itemPickedUp()

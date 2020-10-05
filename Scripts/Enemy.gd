@@ -2,9 +2,11 @@ extends "res://Scripts/IceScater.gd"
 
 onready var player = $"../Player"
 
-signal enemyDied
+signal enemyDied(enemy)
 signal enemyKilledByPlayer
 signal enemyNotKilledByPlayer
+
+var typeIndex
 
 export (PackedScene) var itemScene
 
@@ -64,7 +66,7 @@ func collideWithEnemy(collider):
 	playSfx(collider)
 
 func checkDrop():
-	if randf() < 0.75:
+	if randf() <= get_parent().itemDropRate:
 		var newDrop = itemScene.instance()
 		newDrop.position = self.position
 		var DegreesInRadians = 0.34
@@ -78,8 +80,9 @@ func kill():
 		set_collision_mask_bit(0, false)
 		set_collision_mask_bit(1, false)
 		set_collision_layer_bit(1, false)
+		remove_from_group("enemies")
 		z_index -= 1
-		emit_signal("enemyDied")
+		emit_signal("enemyDied", self)
 		.kill()
 
 func getDirection():

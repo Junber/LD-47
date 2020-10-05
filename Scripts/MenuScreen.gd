@@ -1,5 +1,10 @@
 extends TextureRect
 
+signal pause()
+signal unpause()
+signal quit_game()
+signal restart_game()
+signal restart_level()
 signal button_pressed()
 
 
@@ -16,20 +21,18 @@ func _input(event):
 
 func popup():
 	visible = true
-	get_tree().paused = true
+	emit_signal("pause")
 
 func go_away():
 	visible = false
-	get_tree().paused = false
+	emit_signal("unpause")
 
 func _on_QuitButton_pressed():
-	get_tree().quit()
+	emit_signal("quit_game")
 	emit_signal("button_pressed")
 
 func _on_RestartButton_pressed():
-	#warning-ignore:return_value_discarded
-	get_tree().reload_current_scene()
-	get_tree().paused = false
+	emit_signal("restart_game")
 	emit_signal("button_pressed")
 
 func _on_OptionsButton_pressed():
@@ -38,4 +41,9 @@ func _on_OptionsButton_pressed():
 
 func _on_ContinueButton_pressed():
 	go_away()
+	emit_signal("button_pressed")
+
+func _on_RestartLevelButton_pressed():
+	go_away()
+	emit_signal("restart_level")
 	emit_signal("button_pressed")

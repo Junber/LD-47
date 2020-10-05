@@ -48,7 +48,7 @@ func getDirection():
 	return Vector2(0,0)
 
 func damageDealt():
-	return max(-(rotationSpeed + velocity.length() / 2) * 0.1, -80)
+	return max(-(rotationSpeed / 3 + velocity.length() / 2) * 0.1, -80)
 
 func kill():
 	if !dead:

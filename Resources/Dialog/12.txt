@@ -1,0 +1,1 @@
+Knight appears; Player learns to move around him to kill him

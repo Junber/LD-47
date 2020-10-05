@@ -7,6 +7,7 @@ func setAssocitedEnemy(enemy):
 
 func _process(_delta):
 	if !associtedEnemy:
+		queue_free()
 		return
 	elif associtedEnemy.dead:
 		queue_free()

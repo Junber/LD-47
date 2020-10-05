@@ -26,3 +26,4 @@ texture = ExtResource( 2 )
 shape = SubResource( 1 )
 
 [node name="Laser" parent="." index="5" instance=ExtResource( 4 )]
+damage = -400

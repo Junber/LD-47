@@ -31,7 +31,8 @@ scale_random = 0.35
 color_ramp = SubResource( 3 )
 
 [node name="IceScater" type="KinematicBody2D"]
-position = Vector2( 348.998, 158.75 )
+pause_mode = 1
+position = Vector2( 348.998, 158.305 )
 collision_layer = 2
 collision_mask = 5
 script = ExtResource( 1 )
