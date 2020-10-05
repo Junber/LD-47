@@ -4,7 +4,7 @@
 [ext_resource path="res://Resources/Graphics/BoostTimer.png" type="Texture" id=2]
 [ext_resource path="res://Scenes/IceScater.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=4]
-[ext_resource path="res://Resources/Graphics/PlayerDead.png" type="Texture" id=5]
+[ext_resource path="res://Resources/Graphics/Characters/ProtagonistDead.png" type="Texture" id=5]
 [ext_resource path="res://Resources/Sounds/gunshot.wav" type="AudioStream" id=6]
 [ext_resource path="res://Resources/Graphics/ActiveShieldENGAGED.png" type="Texture" id=7]
 [ext_resource path="res://Scripts/Screenshaker.gd" type="Script" id=8]
@@ -19,6 +19,7 @@ health = 240
 rotationIncrease = 100
 
 [node name="DeadSprite" parent="." index="0"]
+scale = Vector2( 0.15, 0.15 )
 texture = ExtResource( 5 )
 
 [node name="AliveSprite" parent="." index="1"]
