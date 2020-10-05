@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Scripts/ScoreSystem.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/EnemyIndicators.gd" type="Script" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://Scenes/TextBox.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Resources/Graphics/UISkull.png" type="Texture" id=10]
 [ext_resource path="res://theme.tres" type="Theme" id=11]
+[ext_resource path="res://Scripts/EnemiesLeftLabel.gd" type="Script" id=12]
 
 [sub_resource type="DynamicFont" id=1]
 size = 80
@@ -151,17 +152,17 @@ scale = Vector2( 2, 2 )
 texture = ExtResource( 10 )
 
 [node name="EnemiesLeftLabel" type="Label" parent="."]
-visible = false
 margin_left = 1830.0
 margin_top = 965.0
 margin_right = 1874.0
 margin_bottom = 1211.0
-rect_pivot_offset = Vector2( 22, 123 )
+rect_pivot_offset = Vector2( 22, 30 )
 custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 1, 0.0823529, 0, 1 )
 text = "0
 
 "
+script = ExtResource( 12 )
 __meta__ = {
 "_edit_use_anchors_": false,
 "_editor_description_": ""

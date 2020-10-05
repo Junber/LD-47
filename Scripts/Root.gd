@@ -100,6 +100,7 @@ func _on_DeleteScreen_deleteSaveData():
 	$"MenuScreenLayer/StartMenuScreen/MarginContainer/VBoxContainer/StartButton".text = "New Game"
 	$"MenuScreenLayer/StartMenuScreen/MarginContainer/VBoxContainer/DeleteButton".disabled = true
 	saveProgress()
+	restartLevel()
 
 func _on_Game_restartGame():
 	restartLevel()

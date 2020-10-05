@@ -200,14 +200,17 @@ func resetItemStuff():
 	if !$"Player/SlowdownTimer".is_stopped():
 		$"Player/SlowdownTimer".start(0.01)
 
-func setEnemiesLeftToKill(newAmount):
+func setEnemiesLeftToKill(newAmount, stopSpinning = true):
 	enemiesLeftToKill = newAmount
-	$"HUD/EnemiesLeftLabel".text = str(enemiesLeftToKill)
+	$"HUD/EnemiesLeftLabel".changeText(enemiesLeftToKill)
+	if stopSpinning:
+		$"HUD/EnemiesLeftLabel".resetSpinning()
+		
 	$"HUD/EnemiesLeftLabel".visible = enemiesLeftToKill > 0
 	$"HUD/EnemiesLeftIcon".visible = enemiesLeftToKill > 0
 
 func decreaseEnemiesLeft():
-	setEnemiesLeftToKill(enemiesLeftToKill - 1)
+	setEnemiesLeftToKill(enemiesLeftToKill - 1, false)
 	if enemiesLeftToKill <= 0:
 		yield(get_tree().create_timer(0.2), "timeout")
 		freeAllEnemies()
