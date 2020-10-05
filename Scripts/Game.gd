@@ -226,7 +226,7 @@ func itemPickedUp():
 		progressInTutorial()
 
 func _on_Player_shot():
-	if tutorialProgress == 10:
+	if tutorialProgress == 10 and $Player.bulletsLeft == 0:
 		yield(get_tree().create_timer(0.5), "timeout")
 		progressInTutorial()
 

@@ -7,7 +7,7 @@
 [ext_resource path="res://Resources/Graphics/EnemyDead.png" type="Texture" id=5]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 20.0
+radius = 25.2326
 
 [sub_resource type="Gradient" id=2]
 offsets = PoolRealArray( 0, 0.9, 1 )
@@ -66,7 +66,7 @@ amount = 500
 lifetime = 10.0
 one_shot = true
 randomness = 0.2
-visibility_rect = Rect2( 0, 0, 3840, 2160 )
+visibility_rect = Rect2( -3840, -2160, 8520, 4320 )
 local_coords = false
 process_material = SubResource( 4 )
 texture = ExtResource( 4 )

@@ -1,13 +1,16 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
+[ext_resource path="res://Scripts/MenuButtonSoundPlayer.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/Root.gd" type="Script" id=2]
 [ext_resource path="res://Scenes/DeleteScreen.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/CreditsScreen.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Resources/Sounds/menu_button.wav" type="AudioStream" id=5]
 [ext_resource path="res://Scenes/StartMenuScreen.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scenes/MenuScreen.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Scenes/OptionsScreen.tscn" type="PackedScene" id=15]
 
 [node name="Root" type="Node2D"]
+pause_mode = 2
 scale = Vector2( 1.00172, 0.998806 )
 script = ExtResource( 2 )
 
@@ -32,10 +35,21 @@ visible = false
 
 [node name="CreditsScreen" parent="MenuScreenLayer" instance=ExtResource( 4 )]
 visible = false
+
+[node name="MenuButtonSoundPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+bus = "SoundEffects"
+script = ExtResource( 1 )
+[connection signal="button_pressed" from="MenuScreenLayer/MenuScreen" to="MenuButtonSoundPlayer" method="_on_MenuScreen_button_pressed"]
 [connection signal="pause" from="MenuScreenLayer/MenuScreen" to="." method="_on_MenuScreen_pause"]
 [connection signal="quit_game" from="MenuScreenLayer/MenuScreen" to="." method="_on_MenuScreen_quit_game"]
 [connection signal="restart_game" from="MenuScreenLayer/MenuScreen" to="." method="_on_MenuScreen_restart_game"]
 [connection signal="restart_level" from="MenuScreenLayer/MenuScreen" to="." method="_on_MenuScreen_restart_level"]
 [connection signal="unpause" from="MenuScreenLayer/MenuScreen" to="." method="_on_MenuScreen_unpause"]
+[connection signal="button_pressed" from="MenuScreenLayer/StartMenuScreen" to="MenuButtonSoundPlayer" method="_on_StartMenuScreen_button_pressed"]
 [connection signal="quit_game" from="MenuScreenLayer/StartMenuScreen" to="." method="_on_StartMenuScreen_quit_game"]
 [connection signal="start_game" from="MenuScreenLayer/StartMenuScreen" to="." method="_on_StartMenuScreen_start_game"]
+[connection signal="button_pressed" from="MenuScreenLayer/OptionsScreen" to="MenuButtonSoundPlayer" method="_on_OptionsScreen_button_pressed"]
+[connection signal="button_pressed" from="MenuScreenLayer/DeleteScreen" to="MenuButtonSoundPlayer" method="_on_DeleteScreen_button_pressed"]
+[connection signal="deleteSaveData" from="MenuScreenLayer/DeleteScreen" to="." method="_on_DeleteScreen_deleteSaveData"]
+[connection signal="button_pressed" from="MenuScreenLayer/CreditsScreen" to="MenuButtonSoundPlayer" method="_on_CreditsScreen_button_pressed"]

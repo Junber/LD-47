@@ -70,8 +70,8 @@ func checkDrop():
 		var newDrop = itemScene.instance()
 		newDrop.position = self.position
 		var DegreesInRadians = 0.34
-		var newVelocity = (self.velocity * 0.5).rotated(randf()*DegreesInRadians-(DegreesInRadians/2))
-		newDrop.velocity += newVelocity
+		var newVelocity = (self.velocity * 0.3).rotated(randf()*DegreesInRadians-(DegreesInRadians/2))
+		newDrop.velocity = newVelocity
 		get_parent().call_deferred("add_child",newDrop)
 
 func kill():

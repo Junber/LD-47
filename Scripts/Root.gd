@@ -8,15 +8,24 @@ var previousPauseState
 var game = null
 
 func _ready():
-	get_tree().paused = true
 	loadProgress()
 	if tutorialProgress != 1:
 		$"MenuScreenLayer/StartMenuScreen/MarginContainer/VBoxContainer/StartButton".text = "Continue"
 		$"MenuScreenLayer/StartMenuScreen/MarginContainer/VBoxContainer/DeleteButton".disabled = false
+	pauseGame()
 	
 func _notification(what):
 	if what == MainLoop.NOTIFICATION_WM_QUIT_REQUEST:
 		saveProgress()
+
+func pauseGame():
+	previousPauseState = get_tree().paused
+	game.inMenu = true
+	get_tree().paused = true
+	
+func unpauseGame():
+	get_tree().paused = previousPauseState
+	game.inMenu = false
 
 func quitGame():
 	saveProgress()
@@ -78,16 +87,13 @@ func _on_MenuScreen_quit_game():
 	quitGame()
 
 func _on_MenuScreen_pause():
-	previousPauseState = get_tree().paused
-	get_tree().paused = true
-	game.inMenu = true
+	pauseGame()
 
 func _on_MenuScreen_unpause():
-	get_tree().paused = previousPauseState
-	game.inMenu = false
+	unpauseGame()
 
 func _on_StartMenuScreen_start_game():
-	game.inMenu = false
+	unpauseGame()
 
 func _on_DeleteScreen_deleteSaveData():
 	tutorialProgress = 1

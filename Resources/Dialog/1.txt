@@ -1,1 +1,12 @@
-Player moving around
+Hello Player!
+Welcome to the world of [...].
+It is a world much like, well, your world...
+If you are from planet earth and within our current timeline.
+With the exception being that here a few chosen individuals selected throughout time are pitched against eachother in a neverending contest to see who is the strongest, the best.
+The Ultimate Spinner (Looper?).
+The contestants are stuck in a perpetual loop of spinning motion. 
+But some take pride in that, as do you. 
+This is you. 
+A badass time travelling figure skater on a mission to prove that her loops are the most brilliant in all of creation.
+...
+Try to move around a bit using W, A, S, D (or your left mouse button if you are into that kind of stuff). SHow your aptitude by skating over all 5 circles.

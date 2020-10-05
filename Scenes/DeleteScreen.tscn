@@ -75,11 +75,11 @@ __meta__ = {
 margin_left = 20.0
 margin_top = 20.0
 margin_right = 3820.0
-margin_bottom = 279.0
+margin_bottom = 280.0
 
 [node name="YesButton" type="Button" parent="MarginContainer/VBoxContainer"]
 margin_right = 1898.0
-margin_bottom = 259.0
+margin_bottom = 260.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource( 2 )
@@ -89,7 +89,7 @@ expand_icon = true
 [node name="NoButton" type="Button" parent="MarginContainer/VBoxContainer"]
 margin_left = 1902.0
 margin_right = 3800.0
-margin_bottom = 259.0
+margin_bottom = 260.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource( 2 )
