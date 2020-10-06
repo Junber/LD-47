@@ -69,6 +69,7 @@ func loadProgress():
 
 	saveFile.open(saveFileName, File.READ)
 	var optionsData = parse_json(saveFile.get_line())
+	saveFile.close()
 	
 	if optionsData.has("tutorialProgress"):
 		tutorialProgress = optionsData["tutorialProgress"]

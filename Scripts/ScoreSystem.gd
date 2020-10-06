@@ -33,6 +33,13 @@ func endStreak():
 	$ComboBar/StreakLabel.set_rotation(0)
 	$ComboBar/StreakLabel.rect_position = $ComboBar/NormalStreakPosition.position
 
+func resetScore():
+	score = 0
+	$ScoreLabel.text = str(score)
+	$ScoreLabel.rect_scale = Vector2(1, 1)
+	$ScoreLabel.set_rotation(0)
+	$ScoreLabel.rect_position = $NormalScorePosition.position
+
 func increaseScore():
 	score += round((pow(currentStreak, 1.5) - pow(currentStreak - 1, 1.5)) * 100)
 	$ScoreLabel.text = str(score)

@@ -38,6 +38,7 @@ func setTutorialProgress(newTutorialProgress):
 		get_parent().tutorialProgress = 16
 	else:
 		get_parent().tutorialProgress = newTutorialProgress
+	get_parent().saveProgress()
 		
 	loadDialog()
 	loadTutorialSpecificNodes()
@@ -109,7 +110,8 @@ func loadTutorialSpecificNodes():
 		enemiesToCount = -1
 	elif tutorialProgress == 20:
 		resetItemStuff()
-		$HUD/ScoreSystem.score = 0
+		$HUD/ScoreSystem.endStreak()
+		$HUD/ScoreSystem.resetScore()
 		scoreToReach = 15000
 
 func loadTutorialItemDropRate():
@@ -149,6 +151,7 @@ func loadDialog():
 	while !dialogFile.eof_reached():
 		var line = dialogFile.get_line()
 		dialog.append(line)
+	dialogFile.close()
 
 func print_next_dialog_line():
 	if dialogProgress >= dialog.size():

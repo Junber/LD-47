@@ -128,29 +128,32 @@ margin_left = 1830.0
 margin_top = 50.0
 margin_right = 1874.0
 margin_bottom = 296.0
+grow_horizontal = 0
+grow_vertical = 0
 rect_pivot_offset = Vector2( 22, 123 )
 custom_fonts/font = ExtResource( 5 )
 custom_colors/font_color = Color( 1, 0.0823529, 0, 1 )
 text = "0
 
 "
+align = 2
 __meta__ = {
 "_edit_use_anchors_": false,
 "_editor_description_": ""
 }
 
 [node name="EnemiesLeftIcon" type="Sprite" parent="."]
-visible = false
 position = Vector2( 1750, 980 )
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 10 )
 
 [node name="EnemiesLeftLabel" type="Label" parent="."]
-visible = false
 margin_left = 1830.0
 margin_top = 965.0
 margin_right = 1874.0
 margin_bottom = 1211.0
+grow_horizontal = 2
+grow_vertical = 2
 rect_pivot_offset = Vector2( 22, 30 )
 custom_fonts/font = ExtResource( 5 )
 custom_colors/font_color = Color( 1, 0.0823529, 0, 1 )

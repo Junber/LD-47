@@ -110,6 +110,7 @@ func load_options():
 
 	saveFile.open(optionsFileName, File.READ)
 	var optionsData = parse_json(saveFile.get_line())
+	saveFile.close()
 	
 	if optionsData.has("fullscreen"):
 		OS.set_window_fullscreen(optionsData["fullscreen"])
