@@ -18,14 +18,15 @@ func protected(collider):
 	#the shielded angled is halved because the shied extends to both sides
 	return abs(angleToShield(collider.global_position)) <= shieldedAngle * PI / 180 / 2
 
+func damageDealt():
+	return -30
+
 func getDirection():
 	return .getDirection() / 2
 
 func _process(delta):
 	if !dead:
 		var angle = angleToShield($"../Player".global_position)
-		print(angle)
-				
 		if abs(angle) > 0.1:
 			shieldRotation += -sign(angle) * shieldRotationSpeed * delta
 		$ShieldSprite.rotation = shieldRotation - rotation
