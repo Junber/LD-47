@@ -1,8 +1,12 @@
 extends Timer
 
+var timeMultiplier = 1
+
 func slowDown():
-	start()
-	Engine.time_scale /= 20
+	if is_stopped():
+		start()
+		timeMultiplier = 20 * sqrt(Engine.time_scale)
+		Engine.time_scale /= timeMultiplier
 
 func _on_KillSlowdownTimer_timeout():
-	Engine.time_scale *= 20
+	Engine.time_scale *= timeMultiplier
