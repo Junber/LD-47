@@ -1,0 +1,1 @@
+Shoot with [SPACE] or right mouse button until the gun is empty.

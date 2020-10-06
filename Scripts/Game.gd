@@ -6,6 +6,7 @@ onready var textbox = $"HUD/TextBox"
 
 var dialogProgress = 0
 var tutorialProgress = 0
+var flavourfulCampaign = true
 var dialog = []
 var inMenu = true
 
@@ -143,7 +144,12 @@ func loadDialog():
 	dialog = []
 	
 	var dialogFile = File.new()
-	var filename = "res://Resources/Dialog/"+str(tutorialProgress)+".txt"
+	var filename
+	if flavourfulCampaign:
+		filename = "res://Resources/Dialog/"+str(tutorialProgress)+".txt"
+	else:
+		filename = "res://Resources/BareDialog/"+str(tutorialProgress)+".txt"
+		
 	if not dialogFile.file_exists(filename):
 		return
 	

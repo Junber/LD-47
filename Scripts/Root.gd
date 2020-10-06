@@ -3,13 +3,14 @@ extends Node2D
 export(String, FILE) var saveFileName = "user://Save.save"
 
 var gameScene = load("res://Scenes/Game.tscn")
-var tutorialProgress = 1
+var tutorialProgress = 0
+var flavourfulCampaign = true
 var previousPauseState
 var game = null
 
 func _ready():
 	loadProgress()
-	if tutorialProgress != 1:
+	if tutorialProgress != 0:
 		$"MenuScreenLayer/StartMenuScreen/MarginContainer/VBoxContainer/StartButton".text = "Continue"
 		$"MenuScreenLayer/StartMenuScreen/MarginContainer/VBoxContainer/DeleteButton".disabled = false
 	pauseGame()
@@ -37,6 +38,7 @@ func restartLevel():
 	Engine.time_scale = 1
 	game = gameScene.instance()
 	add_child(game)
+	game.flavourfulCampaign = flavourfulCampaign
 	game.setTutorialProgress(tutorialProgress)
 	game.print_next_dialog_line()
 	game.connect("restartGame", self, "_on_Game_restartGame")
@@ -51,7 +53,8 @@ func restartGame():
 
 func saveProgress():
 	var progressData = {
-		"tutorialProgress" : tutorialProgress
+		"tutorialProgress" : tutorialProgress,
+		"flavourfulCampaign" : flavourfulCampaign
 	}
 	
 	var saveFile = File.new()
@@ -73,6 +76,9 @@ func loadProgress():
 	
 	if optionsData.has("tutorialProgress"):
 		tutorialProgress = optionsData["tutorialProgress"]
+	
+	if optionsData.has("flavourfulCampaign"):
+		flavourfulCampaign = optionsData["flavourfulCampaign"]
 	
 	restartLevel()
 
@@ -96,10 +102,13 @@ func _on_MenuScreen_unpause():
 	unpauseGame()
 
 func _on_StartMenuScreen_start_game():
-	unpauseGame()
+	if tutorialProgress == 0:
+		$MenuScreenLayer/CampaignScreen.visible = true
+	else:
+		unpauseGame()
 
 func _on_DeleteScreen_deleteSaveData():
-	tutorialProgress = 1
+	tutorialProgress = 0
 	$"MenuScreenLayer/StartMenuScreen/MarginContainer/VBoxContainer/StartButton".text = "New Game"
 	$"MenuScreenLayer/StartMenuScreen/MarginContainer/VBoxContainer/DeleteButton".disabled = true
 	saveProgress()
@@ -107,3 +116,10 @@ func _on_DeleteScreen_deleteSaveData():
 
 func _on_Game_restartGame():
 	restartLevel()
+
+func _on_CampaignScreen_campaignChosen(flavourful):
+	flavourfulCampaign = flavourful
+	tutorialProgress += 1
+	restartLevel()
+	saveProgress()
+	unpauseGame()

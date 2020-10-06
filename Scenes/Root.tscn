@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Scripts/MenuButtonSoundPlayer.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/Root.gd" type="Script" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://Scripts/MusicLoopPlayer.gd" type="Script" id=8]
 [ext_resource path="res://Resources/Sounds/main_theme_intro.ogg" type="AudioStream" id=9]
 [ext_resource path="res://Resources/Sounds/main_theme_loop.ogg" type="AudioStream" id=10]
+[ext_resource path="res://Scenes/CampaignScreen.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Scenes/OptionsScreen.tscn" type="PackedScene" id=15]
 
 [node name="Root" type="Node2D"]
@@ -39,6 +40,9 @@ visible = false
 [node name="CreditsScreen" parent="MenuScreenLayer" instance=ExtResource( 4 )]
 visible = false
 
+[node name="CampaignScreen" parent="MenuScreenLayer" instance=ExtResource( 11 )]
+visible = false
+
 [node name="MenuButtonSoundPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 5 )
 bus = "SoundEffects"
@@ -66,5 +70,7 @@ script = ExtResource( 8 )
 [connection signal="button_pressed" from="MenuScreenLayer/DeleteScreen" to="MenuButtonSoundPlayer" method="_on_DeleteScreen_button_pressed"]
 [connection signal="deleteSaveData" from="MenuScreenLayer/DeleteScreen" to="." method="_on_DeleteScreen_deleteSaveData"]
 [connection signal="button_pressed" from="MenuScreenLayer/CreditsScreen" to="MenuButtonSoundPlayer" method="_on_CreditsScreen_button_pressed"]
+[connection signal="button_pressed" from="MenuScreenLayer/CampaignScreen" to="MenuButtonSoundPlayer" method="_on_CampaignScreen_button_pressed"]
+[connection signal="campaignChosen" from="MenuScreenLayer/CampaignScreen" to="." method="_on_CampaignScreen_campaignChosen"]
 [connection signal="finished" from="MusicIntroPlayer" to="MusicLoopPlayer" method="_on_MusicIntroPlayer_finished"]
 [connection signal="finished" from="MusicLoopPlayer" to="MusicLoopPlayer" method="_on_MusicLoopPlayer_finished"]
