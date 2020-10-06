@@ -18,10 +18,10 @@ __meta__ = {
 }
 
 [node name="Label" type="RichTextLabel" parent="TextBox"]
-margin_left = 180.0
-margin_top = 103.0
-margin_right = 3470.0
-margin_bottom = 943.0
+margin_left = 92.0
+margin_top = 107.0
+margin_right = 3820.0
+margin_bottom = 947.0
 rect_scale = Vector2( 0.4, 0.4 )
 mouse_filter = 2
 custom_fonts/normal_font = ExtResource( 3 )
@@ -32,15 +32,15 @@ __meta__ = {
 }
 
 [node name="NameLabel" type="RichTextLabel" parent="TextBox"]
-margin_left = 180.0
-margin_top = 30.0
-margin_right = 2665.0
-margin_bottom = 225.0
+margin_left = 91.6116
+margin_top = 33.5355
+margin_right = 2576.61
+margin_bottom = 228.536
 rect_scale = Vector2( 0.5, 0.5 )
 mouse_filter = 2
 custom_fonts/bold_font = ExtResource( 3 )
 custom_fonts/normal_font = ExtResource( 3 )
-custom_colors/default_color = Color( 0.847059, 0.847059, 0.45098, 1 )
+custom_colors/default_color = Color( 0.117647, 0.266667, 0.345098, 1 )
 bbcode_enabled = true
 bbcode_text = "[b]Person:[/b]"
 text = "Person:"
