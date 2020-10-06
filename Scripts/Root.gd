@@ -64,6 +64,7 @@ func saveProgress():
 func loadProgress():
 	var saveFile = File.new()
 	if not saveFile.file_exists(saveFileName):
+		restartLevel()
 		return
 
 	saveFile.open(saveFileName, File.READ)

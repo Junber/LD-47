@@ -80,6 +80,9 @@ pause_mode = 1
 wait_time = 0.03
 one_shot = true
 script = ExtResource( 8 )
+
+[node name="TutorialProgressTimer" type="Timer" parent="."]
+one_shot = true
 [connection signal="boosted" from="Player" to="." method="_on_Player_boosted"]
 [connection signal="playerDied" from="Player" to="EnemySpawnPath" method="_on_Player_playerDied"]
 [connection signal="shot" from="Player" to="." method="_on_Player_shot"]
@@ -89,3 +92,4 @@ script = ExtResource( 8 )
 [connection signal="scoreChanged" from="HUD" to="." method="_on_HUD_scoreChanged"]
 [connection signal="finished" from="CrowdPlayer" to="CrowdPlayer" method="_on_CrowdPlayer_finished"]
 [connection signal="timeout" from="KillSlowdownTimer" to="KillSlowdownTimer" method="_on_KillSlowdownTimer_timeout"]
+[connection signal="timeout" from="TutorialProgressTimer" to="." method="_on_TutorialProgressTimer_timeout"]

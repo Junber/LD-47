@@ -4,6 +4,7 @@ var associtedEnemy = null
 
 func setAssocitedEnemy(enemy):
 	associtedEnemy = enemy
+	associtedEnemy.connect("tree_exiting", self, "enemyExitingTree")
 
 func _process(_delta):
 	if !associtedEnemy:
@@ -22,3 +23,6 @@ func _process(_delta):
 		visible = true
 		position = center + relEnemyPos.normalized() * 500
 		rotation = relEnemyPos.angle() + PI / 2
+
+func enemyExitingTree():
+	queue_free()

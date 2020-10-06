@@ -21,6 +21,7 @@ func _input(event):
 		else:
 			print_next_dialog_line()
 	elif !inMenu and event.is_action_pressed("skip_dialog"):
+		textbox.show_all_text()
 		dialogProgress = dialog.size()
 		hideDialog()
 	
@@ -152,8 +153,6 @@ func loadDialog():
 func print_next_dialog_line():
 	if dialogProgress >= dialog.size():
 		hideDialog()
-		if tutorialProgress == 21:
-			progressInTutorial()
 	else:
 		showDialog(dialog[dialogProgress])
 		dialogProgress += 1
@@ -163,6 +162,9 @@ func hideDialog():
 	get_tree().paused = false
 	$"HUD/ScoreSystem/ComboBar/DecreasingOfBar".emitting = true
 	$"HUD/ScoreSystem/ComboBar/DecreasingOfBar".speed_scale = 1
+	
+	if tutorialProgress == 21:
+		progressInTutorial()
 
 func showDialog(line):
 	textbox.set_text(line)
@@ -183,14 +185,11 @@ func allZonesTouched():
 	
 func _on_Player_boosted():
 	if tutorialProgress == 2:
-		yield(get_tree().create_timer(0.2), "timeout")
-		progressInTutorial()
+		progressInTutorialAfter(0.2)
 
 func playerAttacked():
 	if tutorialProgress == 3:
-		yield(get_tree().create_timer(0.2), "timeout")
-		$Player.frozen = false
-		progressInTutorial()
+		progressInTutorialAfter(0.2)
 
 func resetItemStuff():
 	get_tree().call_group("items", "queue_free")
@@ -215,26 +214,21 @@ func setEnemiesLeftToKill(newAmount, stopSpinning = true):
 func decreaseEnemiesLeft():
 	setEnemiesLeftToKill(enemiesLeftToKill - 1, false)
 	if enemiesLeftToKill <= 0:
-		yield(get_tree().create_timer(0.2), "timeout")
-		freeAllEnemies()
-		progressInTutorial()
+		progressInTutorialAfter(0.2)
 		
 func enemyDied(enemy):
 	if tutorialProgress == 4:
-		yield(get_tree().create_timer(0.2), "timeout")
-		progressInTutorial()
+		progressInTutorialAfter(0.2)
 	elif enemiesLeftToKill and (enemiesToCount < 0 or enemiesToCount == enemy.typeIndex):
 		decreaseEnemiesLeft()
 
 func itemPickedUp():
 	if tutorialProgress in [5, 9, 13, 17]:
-		yield(get_tree().create_timer(0.1), "timeout")
-		progressInTutorial()
+		progressInTutorialAfter(0.1)
 
 func _on_Player_shot():
 	if tutorialProgress == 10 and $Player.bulletsLeft == 0:
-		yield(get_tree().create_timer(0.5), "timeout")
-		progressInTutorial()
+		progressInTutorialAfter(0.5)
 
 func _on_HUD_restartGame():
 	emit_signal("restartGame")
@@ -242,5 +236,14 @@ func _on_HUD_restartGame():
 
 func _on_HUD_scoreChanged(score):
 	if scoreToReach and score >= scoreToReach:
-		yield(get_tree().create_timer(0.2), "timeout")
-		progressInTutorial()
+		progressInTutorialAfter(0.2)
+
+func progressInTutorialAfter(time):
+	if $TutorialProgressTimer.is_stopped():
+		$TutorialProgressTimer.start(time)
+
+func _on_TutorialProgressTimer_timeout():
+	$Player.frozen = false
+	if tutorialProgress != 3:
+		freeAllEnemies()
+	progressInTutorial()

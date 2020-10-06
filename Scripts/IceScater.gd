@@ -54,9 +54,7 @@ func kill():
 	if !dead:
 		particleEmitter.emitting = true
 		dead = true
-		yield(get_tree().create_timer(0.04), "timeout")
-		deadSprite.visible = true
-		aliveSprite.visible = false
+		$CorpseTimer.start(0.04)
 
 func changeHealth(amount):
 	healthBar.value += amount
@@ -87,3 +85,8 @@ func _process(delta):
 		collision.collider.getHitBy(self, collision)
 	
 	setSpriteRotation(0.1 * delta * rotationSpeed)
+
+
+func _on_CorpseTimer_timeout():
+	deadSprite.visible = true
+	aliveSprite.visible = false

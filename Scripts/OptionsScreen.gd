@@ -28,6 +28,9 @@ func _ready():
 	load_options()
 	#warning-ignore:return_value_discarded
 	get_tree().get_root().connect("size_changed", self, "windowResized")
+	
+	if OS.get_name() == "HTML5":
+		resolutionButton.set_disabled(true)
 
 func windowResized():
 	set_resolution_button_to_current_resolution()
@@ -126,7 +129,8 @@ func _on_FullscreenToggle_toggled(button_pressed):
 	OS.set_window_fullscreen(button_pressed)
 	emit_signal("button_pressed")
 	
-	resolutionButton.set_disabled(button_pressed)
+	if OS.get_name() != "HTML5":
+		resolutionButton.set_disabled(button_pressed)
 	set_resolution_button_to_current_resolution()
 
 func _on_ResolutionButton_item_selected(id):

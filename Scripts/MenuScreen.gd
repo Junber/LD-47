@@ -12,6 +12,9 @@ signal button_pressed()
 func _ready():
 	visible = false
 	
+	if OS.get_name() == "HTML5":
+		$MarginContainer/VBoxContainer/QuitButton.set_disabled(true)
+	
 func _input(event):
 	if event.is_action_pressed("open_options") && !$"../OptionsScreen".visible:
 		if !visible:
