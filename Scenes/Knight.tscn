@@ -14,11 +14,23 @@ radius = 24.9228
 script = ExtResource( 1 )
 health = 80
 itemScene = ExtResource( 6 )
+shieldedAngle = 145
+shieldRotationSpeed = 2.094
 
-[node name="ShieldSprite" type="Sprite" parent="." index="0"]
-position = Vector2( 1, 1 )
-scale = Vector2( 0.65, 0.65 )
-texture = ExtResource( 5 )
+[node name="ShieldSprite" type="TextureProgress" parent="." index="0"]
+margin_left = -50.0
+margin_top = -50.0
+margin_right = 50.0
+margin_bottom = 50.0
+rect_scale = Vector2( 0.6, 0.6 )
+rect_pivot_offset = Vector2( 50, 50 )
+max_value = 360.0
+value = 90.0
+texture_progress = ExtResource( 5 )
+fill_mode = 8
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="DeadSprite" parent="." index="1"]
 texture = ExtResource( 2 )

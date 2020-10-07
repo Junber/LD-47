@@ -4,7 +4,10 @@ var shieldRotation = 0
 export var shieldedAngle = 180
 
 #this is the angle in radians that the shield rotates per second
-export var shieldRotationSpeed = PI / 2
+export var shieldRotationSpeed = PI / 3
+
+func _ready():
+	$ShieldSprite.value = shieldedAngle
 
 func kill():
 	if !dead:
@@ -29,4 +32,4 @@ func _process(delta):
 		var angle = angleToShield($"../Player".global_position)
 		if abs(angle) > 0.1:
 			shieldRotation += -sign(angle) * shieldRotationSpeed * delta
-		$ShieldSprite.rotation = shieldRotation - rotation
+		$ShieldSprite.rect_rotation = (shieldRotation - rotation) / PI * 180
