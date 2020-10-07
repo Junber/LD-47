@@ -40,6 +40,7 @@ texture = ExtResource( 7 )
 [node name="GunShotPlayer" type="AudioStreamPlayer2D" parent="." index="7"]
 stream = ExtResource( 6 )
 max_distance = 4500.0
+bus = "SoundEffects"
 __meta__ = {
 "_editor_description_": ""
 }

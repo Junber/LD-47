@@ -16,7 +16,6 @@ script = ExtResource( 4 )
 itemScene = ExtResource( 7 )
 
 [node name="DeadSprite" parent="." index="0"]
-scale = Vector2( 0.12, 0.12 )
 texture = ExtResource( 2 )
 
 [node name="AliveSprite" parent="." index="1"]
@@ -40,10 +39,12 @@ autostart = true
 [node name="GunShotPlayer" type="AudioStreamPlayer2D" parent="." index="7"]
 stream = ExtResource( 5 )
 max_distance = 4500.0
+bus = "SoundEffects"
 
 [node name="GunCockingPlayer" type="AudioStreamPlayer2D" parent="." index="8"]
 stream = ExtResource( 6 )
 max_distance = 4500.0
+bus = "SoundEffects"
 __meta__ = {
 "_editor_description_": ""
 }
