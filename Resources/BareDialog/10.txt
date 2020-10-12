@@ -1,1 +1,1 @@
-Shoot with [SPACE] or right mouse button until the gun is empty.
+Shoot with [SPACE] or right mouse button or the right trigger of your contoller (aiming with either stick) until the gun is empty.

@@ -1,5 +1,5 @@
-You can advance dialog with [Space] or left or right mouse button.
-You can skip all current dialog with [u] or the middle mouse button (but I would not recommend doing this now).
+You can advance dialog with [Space] or left or right mouse button or A on your controller.
+You can skip all current dialog with [U] or the middle mouse button or Y on your controller (but I would not recommend doing this now).
 Hello Player!
 Welcome to the world of Permafrost Pirouette.
 It is a world much like, well, your world...
@@ -11,4 +11,4 @@ But some take pride in that, as do you.
 This is you. 
 A badass time travelling figure skater on a mission to prove that her loops are the most brilliant in all of creation.
 ...
-Try to move around a bit using W, A, S, D (or your left mouse button if you are into that kind of stuff). Show your aptitude by skating over all 5 circles.
+Try to move around a bit using [W][A][S][D] (or your left mouse button or the left stick on your controller if you are into that kind of stuff). Show your aptitude by skating over all 5 circles.
