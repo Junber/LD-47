@@ -10,8 +10,12 @@ func _ready():
 	if OS.get_name() == "HTML5":
 		$MarginContainer/VBoxContainer/QuitButton.set_disabled(true)
 
+func setButtonFocus():
+	$MarginContainer/VBoxContainer/StartButton.grab_focus()
+
 func popup():
 	visible = true
+	setButtonFocus()
 
 func go_away():
 	visible = false
@@ -30,9 +34,22 @@ func _on_StartButton_pressed():
 	emit_signal("button_pressed")
 
 func _on_DeleteButton_pressed():
-	$"../DeleteScreen".visible = true
+	$"../DeleteScreen".popup()
 	emit_signal("button_pressed")
 
 func _on_CreditsButton_pressed():
-	$"../CreditsScreen".visible = true
+	$"../CreditsScreen".popup()
 	emit_signal("button_pressed")
+
+
+func _on_OptionsScreen_screenClosed():
+	if visible:
+		setButtonFocus()
+
+func _on_DeleteScreen_screenClosed():
+	if visible:
+		setButtonFocus()
+
+func _on_CreditsScreen_screenClosed():
+	if visible:
+		setButtonFocus()

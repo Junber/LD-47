@@ -103,7 +103,7 @@ func _on_MenuScreen_unpause():
 
 func _on_StartMenuScreen_start_game():
 	if tutorialProgress == 0:
-		$MenuScreenLayer/CampaignScreen.visible = true
+		$MenuScreenLayer/CampaignScreen.popup()
 	else:
 		unpauseGame()
 

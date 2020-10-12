@@ -76,7 +76,7 @@ valign = 1
 [node name="MusicSlider" type="HSlider" parent="VBoxContainer/SettingsContainer/GridContainer"]
 margin_top = 63.0
 margin_right = 1138.0
-margin_bottom = 140.0
+margin_bottom = 143.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_styles/slider = ExtResource( 6 )
@@ -85,18 +85,18 @@ custom_styles/grabber_area = ExtResource( 5 )
 value = 100.0
 
 [node name="Soundeffects" type="Label" parent="VBoxContainer/SettingsContainer/GridContainer"]
-margin_top = 144.0
+margin_top = 147.0
 margin_right = 1138.0
-margin_bottom = 203.0
+margin_bottom = 206.0
 size_flags_vertical = 1
 custom_fonts/font = ExtResource( 4 )
 text = "Sound Effect Volume:"
 valign = 1
 
 [node name="SoundeffectsSlider" type="HSlider" parent="VBoxContainer/SettingsContainer/GridContainer"]
-margin_top = 207.0
+margin_top = 210.0
 margin_right = 1138.0
-margin_bottom = 285.0
+margin_bottom = 290.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_styles/slider = ExtResource( 6 )
@@ -108,18 +108,18 @@ __meta__ = {
 }
 
 [node name="Label2" type="Label" parent="VBoxContainer/SettingsContainer/GridContainer"]
-margin_top = 289.0
+margin_top = 294.0
 margin_right = 1138.0
-margin_bottom = 348.0
+margin_bottom = 353.0
 size_flags_vertical = 1
 custom_fonts/font = ExtResource( 4 )
 text = "Resolution:"
 valign = 1
 
 [node name="ResolutionButton" type="OptionButton" parent="VBoxContainer/SettingsContainer/GridContainer"]
-margin_top = 352.0
+margin_top = 357.0
 margin_right = 1138.0
-margin_bottom = 471.0
+margin_bottom = 476.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource( 7 )
@@ -127,9 +127,9 @@ text = "1200x600"
 align = 1
 
 [node name="Label3" type="Label" parent="VBoxContainer/SettingsContainer/GridContainer"]
-margin_top = 475.0
+margin_top = 480.0
 margin_right = 1138.0
-margin_bottom = 534.0
+margin_bottom = 539.0
 size_flags_vertical = 1
 custom_fonts/font = ExtResource( 4 )
 text = "Fullscreen:"
@@ -139,7 +139,7 @@ __meta__ = {
 }
 
 [node name="FullscreenToggle" type="CheckButton" parent="VBoxContainer/SettingsContainer/GridContainer"]
-margin_top = 538.0
+margin_top = 543.0
 margin_right = 1138.0
 margin_bottom = 663.0
 size_flags_horizontal = 3

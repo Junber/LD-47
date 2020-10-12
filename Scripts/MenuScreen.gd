@@ -22,7 +22,11 @@ func _input(event):
 		else:
 			go_away()
 
+func setButtonFocus():
+	$MarginContainer/VBoxContainer/ContinueButton.grab_focus()
+
 func popup():
+	setButtonFocus()
 	visible = true
 	emit_signal("pause")
 
@@ -50,3 +54,8 @@ func _on_RestartLevelButton_pressed():
 	go_away()
 	emit_signal("restart_level")
 	emit_signal("button_pressed")
+
+
+func _on_OptionsScreen_screenClosed():
+	if visible:
+		setButtonFocus()
