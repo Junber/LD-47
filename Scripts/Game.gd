@@ -113,7 +113,7 @@ func loadTutorialSpecificNodes():
 		resetItemStuff()
 		$HUD/ScoreSystem.endStreak()
 		$HUD/ScoreSystem.resetScore()
-		scoreToReach = 15000
+		scoreToReach = 12000
 
 func loadTutorialItemDropRate():
 	if tutorialProgress in [1,2,3,4,5, 8,9,10, 12,13, 16,17]:
