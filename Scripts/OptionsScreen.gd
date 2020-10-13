@@ -1,6 +1,7 @@
 extends TextureRect
 
 signal button_pressed()
+signal screenClosed()
 
 export(String, FILE) var optionsFileName = "user://Options.save"
 
@@ -57,6 +58,7 @@ func set_resolution_button_to_current_resolution():
 
 func popup():
 	visible = true
+	$VBoxContainer/BackContainer/BackButton.grab_focus()
 	
 	musicSlider.set_value(get_volume("Music"))
 	sfxSlider.set_value(get_volume("SoundEffects"))
@@ -66,6 +68,7 @@ func popup():
 func go_away():
 	visible = false
 	save_options()
+	emit_signal("screenClosed")
 
 func set_resolution_options():
 	resolutionButton.clear()

@@ -10,6 +10,7 @@ var hasShield = false
 export var shieldDuration = 5.0
 export var slowDownDuration = 5.0
 export var boostCooldownDuration = 1.0
+export var controllerDeadZone = 0.5
 
 var bulletScene = load("res://Scenes/Bullet.tscn")
 var bulletsLeft = 0
@@ -71,8 +72,14 @@ func getDirection():
 	if dead or frozen:
 		return Vector2(0,0)
 	else:
+		var controllerDirection = Vector2(Input.get_joy_axis(0, JOY_AXIS_0), Input.get_joy_axis(0, JOY_AXIS_1))
 		if Input.is_mouse_button_pressed(1) or Input.is_mouse_button_pressed(2):
 			return position.direction_to(get_global_mouse_position())
+		elif controllerDirection.length() >= controllerDeadZone:
+			if controllerDirection.length() >= 0.99:
+				return controllerDirection.normalized()
+			else:
+				return controllerDirection
 		else:
 			var x = int(Input.is_action_pressed("move_right")) - int(Input.is_action_pressed("move_left"))
 			var y = int(Input.is_action_pressed("move_down")) - int(Input.is_action_pressed("move_up"))
@@ -83,7 +90,10 @@ func enemyDied():
 
 func getSpecialDirection():
 	var direction = getDirection()
-	if direction.length() == 0:
+	var controllerDirection = Vector2(Input.get_joy_axis(0, JOY_AXIS_2), Input.get_joy_axis(0, JOY_AXIS_3))
+	if controllerDirection.length() >= controllerDeadZone:
+		return controllerDirection.normalized()
+	elif direction.length() == 0:
 		if velocity.length() == 0:
 			return Vector2(1,0)
 		else:

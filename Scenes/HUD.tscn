@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Scripts/ScoreSystem.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/EnemyIndicators.gd" type="Script" id=2]
@@ -24,6 +24,13 @@ initial_velocity_random = 0.04
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 scale = 0.19
+
+[sub_resource type="InputEventAction" id=2]
+action = "restart"
+pressed = true
+
+[sub_resource type="ShortCut" id=3]
+shortcut = SubResource( 2 )
 
 [node name="HUD" type="CanvasLayer"]
 pause_mode = 2
@@ -183,6 +190,7 @@ margin_top = 700.0
 margin_right = 1260.0
 margin_bottom = 900.0
 theme = ExtResource( 11 )
+shortcut = SubResource( 3 )
 text = "Restart"
 __meta__ = {
 "_edit_use_anchors_": false

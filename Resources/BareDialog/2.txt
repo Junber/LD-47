@@ -1,1 +1,1 @@
-Dash with [SPACE] or right mouse button.
+Dash with [SPACE] or right mouse button or the right trigger of your contoller (aiming with either stick).
