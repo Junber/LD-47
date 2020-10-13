@@ -5,7 +5,7 @@
 [ext_resource path="res://Scripts/Hourglass.gd" type="Script" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 35.4118, 56.5772 )
+extents = Vector2( 19.6744, 43.4648 )
 
 [node name="Hourglass" instance=ExtResource( 2 )]
 script = ExtResource( 3 )
@@ -15,5 +15,5 @@ scale = Vector2( 0.3, 0.3 )
 texture = ExtResource( 1 )
 
 [node name="CollisionShape2D" parent="." index="1"]
-position = Vector2( -0.457291, -4.04014 )
+position = Vector2( 0.48764, -1.5203 )
 shape = SubResource( 1 )

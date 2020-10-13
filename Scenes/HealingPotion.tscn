@@ -6,8 +6,8 @@
 [ext_resource path="res://Resources/Sounds/healthPotion.wav" type="AudioStream" id=4]
 
 [sub_resource type="CapsuleShape2D" id=1]
-radius = 42.0651
-height = 48.2687
+radius = 32.677
+height = 32.3179
 
 [node name="HealingPotion" instance=ExtResource( 3 )]
 script = ExtResource( 1 )
@@ -17,8 +17,8 @@ scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" parent="." index="1"]
-position = Vector2( 2.18755, 0.76528 )
-rotation = -0.959931
+position = Vector2( 0.5, 0.5 )
+rotation = -1.0472
 shape = SubResource( 1 )
 
 [node name="PickupSoundPlayer" parent="." index="3"]
